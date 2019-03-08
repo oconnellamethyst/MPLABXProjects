@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project>
-  <executable name="dist/default/production/feng_lab3_v001.X.production.elf">
+  <executable name="dist/default/production/feng_lab2b_v001.X.production.elf">
     <memory name="data">
       <units>bytes</units>
       <length>8192</length>
@@ -11,8 +11,8 @@
     <memory name="program">
       <units>bytes</units>
       <length>65274</length>
-      <used>1950</used>
-      <free>63324</free>
+      <used>1272</used>
+      <free>64002</free>
     </memory>
   </executable>
 </project>

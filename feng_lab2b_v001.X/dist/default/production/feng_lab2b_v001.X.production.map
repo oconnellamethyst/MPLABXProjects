@@ -6,7 +6,7 @@ Tool Name:
 Command:
   -p24FJ64GA002 \
   -o \
-  dist/default/production/feng_lab3_v001.X.production.elf \
+  dist/default/production/feng_lab2b_v001.X.production.elf \
   -Lc:/program files (x86)/microchip/xc16/v1.35/bin/bin/.. \
   -Lc:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib \
   -Lc:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../support/PIC24E/gld \
@@ -16,10 +16,8 @@ Command:
   -Lc:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../support/dsPIC33C/gld \
   -Lc:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../support/dsPIC33E/gld \
   -Lc:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../support/dsPIC33F/gld \
-  build/default/production/feng_lab3_main_v001.o \
-  build/default/production/_ext/547831423/feng_lab2b_asmLib_v001.o \
-  build/default/production/keypad.o \
-  build/default/production/sevensegment.o \
+  build/default/production/feng_lab2b_main_v001.o \
+  build/default/production/feng_lab2b_asmLib_v001.o \
   --defsym=__MPLAB_BUILD=1 \
   -Tp24FJ64GA002.gld.00 \
   --stack=16 \
@@ -33,7 +31,7 @@ Command:
   --stackguard=16 \
   --no-force-link \
   --smart-io \
-  -Map=dist/default/production/feng_lab3_v001.X.production.map \
+  -Map=dist/default/production/feng_lab2b_v001.X.production.map \
   --report-mem \
   --memorysummary \
   dist/default/production/memoryfile.xml \
@@ -62,9 +60,9 @@ xc16-ld 1.35 (A)
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x200                0xce           0x135  (309)
-.text                        0x2ce               0x446           0x669  (1641)
+.text                        0x2ce               0x282           0x3c3  (963)
 
-                 Total "program" memory used (bytes):          0x79e  (1950) 2%
+                 Total "program" memory used (bytes):          0x4f8  (1272) 1%
 
 
 "data" Memory  [Origin = 0x800, Length = 0x2000]
@@ -92,38 +90,42 @@ External Symbols in Program Memory (by address):
                   0x000252                  __data_init_standard
                   0x000252                  __data_init
                   0x0002c8                  __DefaultInterrupt
-                  0x0002ce                  _init7seg
-                  0x0002e2                  _showChar7seg
-                  0x000422                  _test7seg
-                  0x000568                  _initkeypad
-                  0x000582                  _readKeyPadRaw
-                  0x000672                  _setup
-                  0x000680                  _delay
-                  0x00069a                  _main
-                  0x0006ec                  _micro_wait
-                  0x0006f2                  _ms_wait
-                  0x0006f8                  _write_0
-                  0x000706                  _write_1
+                  0x0002ce                  _setup
+                  0x0002e6                  _writeColor
+                  0x000366                  _delay
+                  0x000380                  _packColor
+                  0x0003b6                  _getR
+                  0x0003e8                  _getG
+                  0x00041a                  _getB
+                  0x00044c                  _writePacCol
+                  0x000470                  _Wheel
+                  0x0004d6                  _main
+                  0x000528                  _micro_wait
+                  0x00052e                  _ms_wait
+                  0x000534                  _write_0
+                  0x000542                  _write_1
 
 External Symbols in Program Memory (by name):
 
+                  0x000470                  _Wheel
                   0x0002c8                  __DefaultInterrupt
                   0x000252                  __data_init
                   0x000252                  __data_init_standard
                   0x00023c                  __psv_init
                   0x000200                  __resetPRI
-                  0x000680                  _delay
-                  0x0002ce                  _init7seg
-                  0x000568                  _initkeypad
-                  0x00069a                  _main
-                  0x0006ec                  _micro_wait
-                  0x0006f2                  _ms_wait
-                  0x000582                  _readKeyPadRaw
-                  0x000672                  _setup
-                  0x0002e2                  _showChar7seg
-                  0x000422                  _test7seg
-                  0x0006f8                  _write_0
-                  0x000706                  _write_1
+                  0x000366                  _delay
+                  0x00041a                  _getB
+                  0x0003e8                  _getG
+                  0x0003b6                  _getR
+                  0x0004d6                  _main
+                  0x000528                  _micro_wait
+                  0x00052e                  _ms_wait
+                  0x000380                  _packColor
+                  0x0002ce                  _setup
+                  0x0002e6                  _writeColor
+                  0x00044c                  _writePacCol
+                  0x000534                  _write_0
+                  0x000542                  _write_1
 
 Memory Configuration
 
@@ -140,10 +142,8 @@ CONFIG1          0x00abfe           0x000002
 
 Linker script and memory map
 
-LOAD build/default/production/feng_lab3_main_v001.o
-LOAD build/default/production/_ext/547831423/feng_lab2b_asmLib_v001.o
-LOAD build/default/production/keypad.o
-LOAD build/default/production/sevensegment.o
+LOAD build/default/production/feng_lab2b_main_v001.o
+LOAD build/default/production/feng_lab2b_asmLib_v001.o
                     0x0001                  __MPLAB_BUILD = 0x1
 LOAD pPIC24Fxxx
 LOAD c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libfx-elf.a
@@ -198,39 +198,29 @@ __CONFIG1
 .comment
  *(.comment)
 
-.debug_info       0x000000        0xe10
+.debug_info       0x000000        0x645
  *(.debug_info)
- .debug_info      0x000000        0x340 build/default/production/feng_lab3_main_v001.o
- .debug_info      0x000340         0xaa build/default/production/_ext/547831423/feng_lab2b_asmLib_v001.o
- .debug_info      0x0003ea        0x656 build/default/production/keypad.o
- .debug_info      0x000a40        0x3d0 build/default/production/sevensegment.o
+ .debug_info      0x000000        0x5af build/default/production/feng_lab2b_main_v001.o
+ .debug_info      0x0005af         0x96 build/default/production/feng_lab2b_asmLib_v001.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev     0x000000        0x307
+.debug_abbrev     0x000000        0x14e
  *(.debug_abbrev)
- .debug_abbrev    0x000000        0x11d build/default/production/feng_lab3_main_v001.o
- .debug_abbrev    0x00011d         0x14 build/default/production/_ext/547831423/feng_lab2b_asmLib_v001.o
- .debug_abbrev    0x000131         0xff build/default/production/keypad.o
- .debug_abbrev    0x000230         0xd7 build/default/production/sevensegment.o
+ .debug_abbrev    0x000000        0x13a build/default/production/feng_lab2b_main_v001.o
+ .debug_abbrev    0x00013a         0x14 build/default/production/feng_lab2b_asmLib_v001.o
 
-.debug_line       0x000000        0x43d
+.debug_line       0x000000        0x1ba
  *(.debug_line)
- .debug_line      0x000000        0x10f build/default/production/feng_lab3_main_v001.o
- .debug_line      0x00010f         0x6d build/default/production/_ext/547831423/feng_lab2b_asmLib_v001.o
- .debug_line      0x00017c        0x125 build/default/production/keypad.o
- .debug_line      0x0002a1        0x19c build/default/production/sevensegment.o
+ .debug_line      0x000000        0x162 build/default/production/feng_lab2b_main_v001.o
+ .debug_line      0x000162         0x58 build/default/production/feng_lab2b_asmLib_v001.o
 
-.debug_frame      0x000000        0x11c
+.debug_frame      0x000000        0x132
  *(.debug_frame)
- .debug_frame     0x000000         0x68 build/default/production/feng_lab3_main_v001.o
- .debug_frame     0x000068         0x4c build/default/production/keypad.o
- .debug_frame     0x0000b4         0x68 build/default/production/sevensegment.o
+ .debug_frame     0x000000        0x132 build/default/production/feng_lab2b_main_v001.o
 
-.debug_str        0x000000         0x3b
+.debug_str        0x000000         0x12
  *(.debug_str)
- .debug_str       0x000000          0xb build/default/production/feng_lab3_main_v001.o
- .debug_str       0x00000b         0x27 build/default/production/keypad.o
- .debug_str       0x000032          0x9 build/default/production/sevensegment.o
+ .debug_str       0x000000         0x12 build/default/production/feng_lab2b_main_v001.o
 
 .debug_loc
  *(.debug_loc)
@@ -239,28 +229,20 @@ __CONFIG1
  *(.debug_macinfo)
 
 .debug_pubnames
-                  0x000000         0x9f
+                  0x000000         0x81
  *(.debug_pubnames)
  .debug_pubnames
-                  0x000000         0x2f build/default/production/feng_lab3_main_v001.o
- .debug_pubnames
-                  0x00002f         0x33 build/default/production/keypad.o
- .debug_pubnames
-                  0x000062         0x3d build/default/production/sevensegment.o
+                  0x000000         0x81 build/default/production/feng_lab2b_main_v001.o
 
 .debug_ranges
  *(.debug_ranges)
 
-.debug_aranges    0x000000         0x60
+.debug_aranges    0x000000         0x30
  *(.debug_aranges)
  .debug_aranges
-                  0x000000         0x18 build/default/production/feng_lab3_main_v001.o
+                  0x000000         0x18 build/default/production/feng_lab2b_main_v001.o
  .debug_aranges
-                  0x000018         0x18 build/default/production/_ext/547831423/feng_lab2b_asmLib_v001.o
- .debug_aranges
-                  0x000030         0x18 build/default/production/keypad.o
- .debug_aranges
-                  0x000048         0x18 build/default/production/sevensegment.o
+                  0x000018         0x18 build/default/production/feng_lab2b_asmLib_v001.o
                     0x0000                  WREG0 = 0x0
                     0x0000                  _WREG0 = 0x0
                     0x0002                  WREG1 = 0x2
@@ -842,52 +824,44 @@ LOAD c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-pic30
 LOAD c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libm-elf.a
 LOAD c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-c-elf.a
 END GROUP
-OUTPUT(dist/default/production/feng_lab3_v001.X.production.elf elf32-pic30)
+OUTPUT(dist/default/production/feng_lab2b_v001.X.production.elf elf32-pic30)
 LOAD default_isr
 
 .debug_pubtypes
-                  0x000060        0x115
+                  0x000030         0x4d
  .debug_pubtypes
-                  0x000060         0x40 build/default/production/feng_lab3_main_v001.o
- .debug_pubtypes
-                  0x0000a0         0x99 build/default/production/keypad.o
- .debug_pubtypes
-                  0x000139         0x3c build/default/production/sevensegment.o
+                  0x000030         0x4d build/default/production/feng_lab2b_main_v001.o
 
 __c30_signature
-                  0x000175         0x1e
+                  0x00007d         0x12
  __c30_signature
-                  0x000175          0x6 build/default/production/feng_lab3_main_v001.o
+                  0x00007d          0x6 build/default/production/feng_lab2b_main_v001.o
  __c30_signature
-                  0x00017b          0x6 build/default/production/keypad.o
+                  0x000083          0x6 c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o)
  __c30_signature
-                  0x000181          0x6 build/default/production/sevensegment.o
- __c30_signature
-                  0x000187          0x6 c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o)
- __c30_signature
-                  0x00018d          0x6 c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-pic30-elf.a(data_init_standard.o)
+                  0x000089          0x6 c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-pic30-elf.a(data_init_standard.o)
 
 .config_JTAGEN    0x00abfe          0x2
  .config_JTAGEN
-                  0x00abfe          0x2 build/default/production/feng_lab3_main_v001.o
+                  0x00abfe          0x2 build/default/production/feng_lab2b_main_v001.o
 
 .config_IESO      0x00abfc          0x2
- .config_IESO     0x00abfc          0x2 build/default/production/feng_lab3_main_v001.o
+ .config_IESO     0x00abfc          0x2 build/default/production/feng_lab2b_main_v001.o
 
-.text             0x0002ce        0x446
- .text            0x0002ce        0x29a build/default/production/sevensegment.o
-                  0x0002ce                  _init7seg
-                  0x0002e2                  _showChar7seg
-                  0x000422                  _test7seg
- .text            0x000568        0x10a build/default/production/keypad.o
-                  0x000568                  _initkeypad
-                  0x000582                  _readKeyPadRaw
- .text            0x000672         0x7a build/default/production/feng_lab3_main_v001.o
-                  0x000672                  _setup
-                  0x000680                  _delay
-                  0x00069a                  _main
- .text            0x0006ec         0x28 build/default/production/_ext/547831423/feng_lab2b_asmLib_v001.o
-                  0x0006ec                  _micro_wait
-                  0x0006f2                  _ms_wait
-                  0x0006f8                  _write_0
-                  0x000706                  _write_1
+.text             0x0002ce        0x282
+ .text            0x0002ce        0x25a build/default/production/feng_lab2b_main_v001.o
+                  0x0002ce                  _setup
+                  0x0002e6                  _writeColor
+                  0x000366                  _delay
+                  0x000380                  _packColor
+                  0x0003b6                  _getR
+                  0x0003e8                  _getG
+                  0x00041a                  _getB
+                  0x00044c                  _writePacCol
+                  0x000470                  _Wheel
+                  0x0004d6                  _main
+ .text            0x000528         0x28 build/default/production/feng_lab2b_asmLib_v001.o
+                  0x000528                  _micro_wait
+                  0x00052e                  _ms_wait
+                  0x000534                  _write_0
+                  0x000542                  _write_1
