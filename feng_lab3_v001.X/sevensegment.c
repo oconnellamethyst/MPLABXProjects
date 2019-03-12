@@ -25,6 +25,7 @@ void init7seg(void) {
 
 void showChar7seg(char myChar, int myDigit){
     //where myDigit indicates LEFT (1) or RIGHT (0)
+    // Based on the contents of char myChar, it lights up the segments of the 7 segment for the char
    LATB = 0xFFFF ;
     if(myDigit == 1){
         LATBbits.LATB10 =1;

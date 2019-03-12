@@ -380,25 +380,25 @@ void delay(int delay_in_ms){
 
 int main(void) {
     setup();
-    init7seg();
-    initkeypad();
-    char Value[2] = {'x','x'};
-    char nextDig[2] = {'x','x'};
+    init7seg(); // sets the bits right for the seven segment display to run
+    initkeypad(); // does likewise for the keypad
+    char Value[2] = {'x','x'}; // sets up an array for use, with x's so that we know when it hasn't been used
+    char nextDig[2] = {'x','x'}; // does likewise
     
     while(1) {
-        char newDig = readKeyPadRaw();
-        nextDig[0] = nextDig[1];
-        nextDig[1] = newDig;
+        char newDig = readKeyPadRaw(); // sets up char, new dig. Runs function readKeyPad, which returns char
+        nextDig[0] = nextDig[1]; // slides the number
+        nextDig[1] = newDig; // places in the new number
         
-        if (nextDig[0] == 'x' && nextDig[1] != 'x') {
+        if (nextDig[0] == 'x' && nextDig[1] != 'x') { //similar code to above
             Value[0] = Value[1];
             Value[1] = newDig;
         }
          
-        showChar7seg(Value[1],0);
-        delay(5);
-        showChar7seg(Value[0],1);
-        delay(5);
+        showChar7seg(Value[1],0); // The second bit determines which character is displaying, and the first what is displayed
+        delay(5); // Delay so that the number shows up
+        showChar7seg(Value[0],1); // Display the other number
+        delay(5); // Likewise
     }
     return 0;
 }

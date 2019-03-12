@@ -17,11 +17,13 @@ void initkeypad(void){
 
 char readKeyPadRaw(void){
     
+    //Sets the row bits that are being checked
     LATBbits.LATB12 = 0;
     LATBbits.LATB13 = 1;
     LATBbits.LATB14 = 1;
     LATBbits.LATB15 = 1;
     ms_wait();
+    //checks the column bits in that row
     if(PORTAbits.RA3 ^ 1){
         return '1';
     }
