@@ -27,12 +27,24 @@
                                        // Fail-Safe Clock Monitor is enabled)
 #pragma config FNOSC = FRCPLL      // Oscillator Select (Fast RC Oscillator with PLL module (FRCPLL))
 
+
+
 void setup(void)
 {
     CLKDIVbits.RCDIV = 0;  //Set RCDIV=1:1 (default 2:1) 32MHz or FCY/2=16M
    
     
 }
+
+     
+void initPushButton(void){
+    
+}
+
+void __attribute__((interrupt, auto_psv)) _T2Interrupt(){
+    
+}
+ 
 
 
 void initServo(void) {
@@ -42,7 +54,7 @@ void initServo(void) {
     
      AD1PCFG = 0xFFFF;
      TRISBbits.TRISB6 = 0;
-    
+   
     
     //Configure Timer 3 (500ns/count, 25ms max).
     // note that resolution = 500ns = 8 x 62.5ns = 0.0005ms, max period = 25ms = Tcy*8*50,000
@@ -50,6 +62,16 @@ void initServo(void) {
     TMR3 = 0; // Initialize to zero (also best practice)
     PR3 = 39999; // Set period to be larger than max external sig duration
     T3CONbits.TON = 1; // Restart 16-bit Timer3
+    
+    
+    //Configure Timer 2
+    T2CON = 0;
+    T2CONbits.TCKPS = 0b11;
+    PR2 = 62499;
+    _T2IF = 0;             //clear interrupt flag
+    _T2IE = 1;             //enable interrupt 
+    T2CONbits.TON = 1;
+
    
     
     OC1CON = 0; // turn off OC1 for now
@@ -75,9 +97,9 @@ int main(void) {
     setup();
     initServo();
     while(1){
-    setServo(3600); // changed to 3600
+    setServo(3600); // calculated to 3600
     delay(1000);
-    setServo(1000); // change to 2400
+    setServo(1800); // calculated to 2400 changed to 1800
     delay(1000);
     }
     return 0;
