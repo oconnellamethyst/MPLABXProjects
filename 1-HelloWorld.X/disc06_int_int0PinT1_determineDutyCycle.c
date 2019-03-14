@@ -41,7 +41,7 @@ void __attribute__((__interrupt__,__auto_psv__)) _T1Interrupt(void)
     overflow++;
 }
 
-void __attribute__((__interrupt__,__auto_psv__)) _INT0Interrupt(void)
+void __attribute__((__interrupt__,__auto_psv__)) _INT0Interrupt(void) //Takes care of what we do
 {
     _INT0IF = 0;
 
@@ -49,14 +49,14 @@ void __attribute__((__interrupt__,__auto_psv__)) _INT0Interrupt(void)
         TMR1 = 0;
         overflow = 0;
     } else { // I was waiting for a falling edge
-        numCycles = TMR1 + 16000L * overflow;
+        numCycles = TMR1 + 16000L * overflow; // What is this? how many cycles? 16000 is one ms, number of cycles in ms. That L is long int, which we need cause that multiplication is going to be bigger than 65535. 
 //        TMR1 = 0;         // uncomment these two lines if you want the period
 //        overflow = 0;     //       and not just active duty cycle. also
                             //       delete the if part, and the last line
                             //       that changes polarity of INT0EP
     }
 
-    _INT0EP = 1 - _INT0EP;
+    _INT0EP = 1 - _INT0EP; //BTG... or XOR = 1, basically we're flipping this.
 }
 
 void setup(void)
