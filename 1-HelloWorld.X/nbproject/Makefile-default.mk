@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=disc5_t1t2_50ms.c
+SOURCEFILES_QUOTED_IF_SPACED=disc06_int_int0PinT1_determineDutyCycle.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/disc5_t1t2_50ms.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/disc5_t1t2_50ms.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/disc06_int_int0PinT1_determineDutyCycle.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/disc06_int_int0PinT1_determineDutyCycle.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/disc5_t1t2_50ms.o
+OBJECTFILES=${OBJECTDIR}/disc06_int_int0PinT1_determineDutyCycle.o
 
 # Source Files
-SOURCEFILES=disc5_t1t2_50ms.c
+SOURCEFILES=disc06_int_int0PinT1_determineDutyCycle.c
 
 
 CFLAGS=
@@ -94,20 +94,20 @@ MP_LINKER_FILE_OPTION=,--script=p24FJ64GA002.gld
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: compile
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-${OBJECTDIR}/disc5_t1t2_50ms.o: disc5_t1t2_50ms.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/disc06_int_int0PinT1_determineDutyCycle.o: disc06_int_int0PinT1_determineDutyCycle.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/disc5_t1t2_50ms.o.d 
-	@${RM} ${OBJECTDIR}/disc5_t1t2_50ms.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  disc5_t1t2_50ms.c  -o ${OBJECTDIR}/disc5_t1t2_50ms.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/disc5_t1t2_50ms.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_SIMULATOR=1    -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
-	@${FIXDEPS} "${OBJECTDIR}/disc5_t1t2_50ms.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	@${RM} ${OBJECTDIR}/disc06_int_int0PinT1_determineDutyCycle.o.d 
+	@${RM} ${OBJECTDIR}/disc06_int_int0PinT1_determineDutyCycle.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  disc06_int_int0PinT1_determineDutyCycle.c  -o ${OBJECTDIR}/disc06_int_int0PinT1_determineDutyCycle.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/disc06_int_int0PinT1_determineDutyCycle.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_SIMULATOR=1    -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
+	@${FIXDEPS} "${OBJECTDIR}/disc06_int_int0PinT1_determineDutyCycle.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 else
-${OBJECTDIR}/disc5_t1t2_50ms.o: disc5_t1t2_50ms.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/disc06_int_int0PinT1_determineDutyCycle.o: disc06_int_int0PinT1_determineDutyCycle.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/disc5_t1t2_50ms.o.d 
-	@${RM} ${OBJECTDIR}/disc5_t1t2_50ms.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  disc5_t1t2_50ms.c  -o ${OBJECTDIR}/disc5_t1t2_50ms.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/disc5_t1t2_50ms.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
-	@${FIXDEPS} "${OBJECTDIR}/disc5_t1t2_50ms.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	@${RM} ${OBJECTDIR}/disc06_int_int0PinT1_determineDutyCycle.o.d 
+	@${RM} ${OBJECTDIR}/disc06_int_int0PinT1_determineDutyCycle.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  disc06_int_int0PinT1_determineDutyCycle.c  -o ${OBJECTDIR}/disc06_int_int0PinT1_determineDutyCycle.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/disc06_int_int0PinT1_determineDutyCycle.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
+	@${FIXDEPS} "${OBJECTDIR}/disc06_int_int0PinT1_determineDutyCycle.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 endif
 

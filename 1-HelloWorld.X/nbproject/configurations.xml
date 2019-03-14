@@ -15,6 +15,17 @@
       <itemPath>disc3.c</itemPath>
       <itemPath>disc04.s</itemPath>
       <itemPath>disc5_t1t2_50ms.c</itemPath>
+      <itemPath>disc00.c</itemPath>
+      <itemPath>disc01.s</itemPath>
+      <itemPath>disc02C.c</itemPath>
+      <itemPath>disc02asm.s</itemPath>
+      <itemPath>disc06_int_int0PinT1_determineDutyCycle.c</itemPath>
+      <itemPath>int_first_t1.c</itemPath>
+      <itemPath>int_int0Pin.c</itemPath>
+      <itemPath>int_int0PinT1_determineDutyCycle.c</itemPath>
+      <itemPath>int_int0_t1.c</itemPath>
+      <itemPath>t1_first.c</itemPath>
+      <itemPath>t1_oneMin.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -23,6 +34,9 @@
     </logicalFolder>
     <itemPath>Hello1.c</itemPath>
   </logicalFolder>
+  <sourceRootList>
+    <Elem>.</Elem>
+  </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
     <conf name="default" type="2">
@@ -223,7 +237,79 @@
         <property key="programoptions.uselvpprogramming" value="false"/>
         <property key="voltagevalue" value="3.25"/>
       </PK3OBPlatformTool>
+      <item path="disc00.c" ex="true" overriding="false">
+        <C30>
+        </C30>
+        <C30-AR>
+        </C30-AR>
+        <C30-AS>
+        </C30-AS>
+        <C30-LD>
+        </C30-LD>
+        <C30Global>
+        </C30Global>
+      </item>
+      <item path="disc01.s" ex="true" overriding="false">
+        <C30>
+        </C30>
+        <C30-AR>
+        </C30-AR>
+        <C30-AS>
+        </C30-AS>
+        <C30-LD>
+        </C30-LD>
+        <C30Global>
+        </C30Global>
+      </item>
+      <item path="disc02C.c" ex="true" overriding="false">
+        <C30>
+        </C30>
+        <C30-AR>
+        </C30-AR>
+        <C30-AS>
+        </C30-AS>
+        <C30-LD>
+        </C30-LD>
+        <C30Global>
+        </C30Global>
+      </item>
+      <item path="disc02asm.s" ex="true" overriding="false">
+        <C30>
+        </C30>
+        <C30-AR>
+        </C30-AR>
+        <C30-AS>
+        </C30-AS>
+        <C30-LD>
+        </C30-LD>
+        <C30Global>
+        </C30Global>
+      </item>
       <item path="disc04.s" ex="true" overriding="false">
+        <C30>
+        </C30>
+        <C30-AR>
+        </C30-AR>
+        <C30-AS>
+        </C30-AS>
+        <C30-LD>
+        </C30-LD>
+        <C30Global>
+        </C30Global>
+      </item>
+      <item path="disc06_int_int0PinT1_determineDutyCycle.c"
+            ex="false"
+            overriding="false">
+        <C30>
+        </C30>
+        <C30-AR>
+        </C30-AR>
+        <C30-AS>
+        </C30-AS>
+        <C30-LD>
+        </C30-LD>
+        <C30Global>
+        </C30Global>
       </item>
       <item path="disc3.c" ex="true" overriding="false">
         <C30>
@@ -236,6 +322,30 @@
         </C30-LD>
         <C30Global>
         </C30Global>
+      </item>
+      <item path="disc5_t1t2_50ms.c" ex="true" overriding="false">
+        <C30>
+        </C30>
+        <C30-AR>
+        </C30-AR>
+        <C30-AS>
+        </C30-AS>
+        <C30-LD>
+        </C30-LD>
+        <C30Global>
+        </C30Global>
+      </item>
+      <item path="int_first_t1.c" ex="true" overriding="false">
+      </item>
+      <item path="int_int0Pin.c" ex="true" overriding="false">
+      </item>
+      <item path="int_int0PinT1_determineDutyCycle.c" ex="true" overriding="false">
+      </item>
+      <item path="int_int0_t1.c" ex="true" overriding="false">
+      </item>
+      <item path="t1_first.c" ex="true" overriding="false">
+      </item>
+      <item path="t1_oneMin.c" ex="true" overriding="false">
       </item>
     </conf>
   </confs>
