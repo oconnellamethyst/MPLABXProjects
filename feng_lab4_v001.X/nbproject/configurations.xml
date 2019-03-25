@@ -4,7 +4,7 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
-      <itemPath>../feng_lab2b_v001.X/feng_lab2b_asmLib_v001.h</itemPath>
+      <itemPath>../../Desktop/feng_lab2b_v001.X/feng_lab2b_asmLib_v001.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -14,7 +14,7 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>feng0084_lab4_main_v001.c</itemPath>
-      <itemPath>../feng_lab2b_v001.X/feng_lab2b_asmLib_v001.s</itemPath>
+      <itemPath>../../Desktop/feng_lab2b_v001.X/feng_lab2b_asmLib_v001.s</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -22,6 +22,9 @@
       <itemPath>Makefile</itemPath>
     </logicalFolder>
   </logicalFolder>
+  <sourceRootList>
+    <Elem>../../Desktop/feng_lab2b_v001.X</Elem>
+  </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
     <conf name="default" type="2">
@@ -33,7 +36,7 @@
         <platformTool>PK3OBPlatformTool</platformTool>
         <languageToolchain>XC16</languageToolchain>
         <languageToolchainVersion>1.35</languageToolchainVersion>
-        <platform>2</platform>
+        <platform>3</platform>
       </toolsSet>
       <compileType>
         <linkerTool>

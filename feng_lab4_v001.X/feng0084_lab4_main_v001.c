@@ -10,7 +10,7 @@
 
 #include "xc.h"
 
-
+#include "feng_lab2b_asmLib_v001.h"
 
 #pragma config ICS = PGx1          // Comm Channel Select (Emulator EMUC1/EMUD1 pins are shared with PGC1/PGD1)
 #pragma config FWDTEN = OFF        // Watchdog Timer Enable (Watchdog Timer is disabled)
@@ -27,24 +27,18 @@
                                        // Fail-Safe Clock Monitor is enabled)
 #pragma config FNOSC = FRCPLL      // Oscillator Select (Fast RC Oscillator with PLL module (FRCPLL))
 
+volatile int rollover = 0;
 
-
+void __attribute__((interrupt,auto_psv)) _T2Interrupt(){
+    IFS0bits.T2IF = 0;
+    rollover ++;
+}
 void setup(void)
 {
     CLKDIVbits.RCDIV = 0;  //Set RCDIV=1:1 (default 2:1) 32MHz or FCY/2=16M
-   
+    AD1PCFG = 0xFFFF;
     
 }
-
-     
-void initPushButton(void){
-    
-}
-
-void __attribute__((interrupt, auto_psv)) _T2Interrupt(){
-    
-}
- 
 
 
 void initServo(void) {
@@ -52,9 +46,9 @@ void initServo(void) {
     RPOR3bits.RP6R = 18; // Use Pin RP6 for Output Compare 1 = "18" (Table 10-3)
     __builtin_write_OSCCONL(OSCCON | 0x40); // lock PPS
     
-     AD1PCFG = 0xFFFF;
+     
      TRISBbits.TRISB6 = 0;
-   
+    
     
     //Configure Timer 3 (500ns/count, 25ms max).
     // note that resolution = 500ns = 8 x 62.5ns = 0.0005ms, max period = 25ms = Tcy*8*50,000
@@ -63,20 +57,9 @@ void initServo(void) {
     PR3 = 39999; // Set period to be larger than max external sig duration
     T3CONbits.TON = 1; // Restart 16-bit Timer3
     
-    
-    //Configure Timer 2
-    T2CON = 0;
-    T2CONbits.TCKPS = 0b11;
-    PR2 = 62499;
-    _T2IF = 0;             //clear interrupt flag
-    _T2IE = 1;             //enable interrupt 
-    T2CONbits.TON = 1;
-
-   
-    
     OC1CON = 0; // turn off OC1 for now
-    OC1R = 3000; //changed to 3K
-    OC1RS =3000; //change to 3k
+    OC1R = 3000;
+    OC1RS = 3000;
     OC1CONbits.OCTSEL = 1; // Use Timer 3 for compare source
     OC1CONbits.OCM = 0b110; // Output compare PWM w/o faults
    
@@ -93,14 +76,85 @@ void delay(int delay_in_ms){
     }
 }
 
+void initPushButton(void) {
+    /*
+    __builtin_write_OSCCONL(OSCCON & 0xbf); // unlock PPS
+    RPINR7bits.IC1R = 8; // Use Pin RP8 = "8", for Input Capture 1 (Table 10-2)
+    __builtin_write_OSCCONL(OSCCON | 0x40); // lock PPS
+    
+    
+    T2CON = 0;
+    T2CONbits.TCKPS =0b11;
+    TMR2 = 0; // Initialize to zero (also best practice)
+    PR2 = 62499;
+    
+   
+    IC1CON = 0; // Turn off and reset internal state of IC1
+    IC1CONbits.ICTMR = 0b001; // Use Timer 2 for capture source
+    IC1CONbits.ICM = 0b011; // Capture raising edges
+    IC1CONbits.ICI = 0b00; //Interrupt every capture event
+    IFS0bits.IC1IF = 0;
+    
+    */
+    TRISBbits.TRISB8 = 1;
+    CNPU2bits.CN22PUE = 1;
+    
+    
+    //set flag to zero, enable interrupt
+    //IEC0bits.IC1IE = 0;
+    
+   
+    
+     
+    T2CON = 0;
+    T2CONbits.TCKPS =0b11;
+    TMR2 = 0; // Initialize to zero (also best practice)
+    PR2 = 62499;
+    
+    IFS0bits.T2IF = 0;
+    IEC0bits.T2IE = 1;
+    T2CONbits.TON = 1; // Restart 16-bit Timer2
+    
+
+}
+
 int main(void) {
+    long int currentTime = 0;
+    long int prev = 0;
+    int press = 0; //count the how many times the button has been pressed, for testing button purpose only
     setup();
     initServo();
+    initPushButton();
+   setServo(1000);//initial several to the right
     while(1){
-    setServo(3600); // calculated to 3600
-    delay(1000);
-    setServo(1800); // calculated to 2400 changed to 1800
-    delay(1000);
+        //while(IFS0bits.IC1IF == 0);
+        //IFS0bits.IC1IF = 0;
+        while(PORTBbits.RB8 == 1);// idle value of RB8 is 1, when button pressed, it will go 0. 
+        press++; // increment press.
+      
+    
+           prev = currentTime;//update previous button pressed time
+            currentTime =(TMR2 + rollover*62500)/1000; //record current button pressed time
+            TMR2 = 0;
+            rollover = 0;
+            if((currentTime-prev)>10){ //if this is not double click, set currentTime to -1, so that it won't trigger next if loop. 
+            currentTime = -1;
+            }
+            
+            
+        
+        
+        if((currentTime-prev) < 10 && currentTime>0){//if it is double click. do following. 
+            setServo(4500);
+            delay(2000);
+            setServo(1000);
+        }
+       
+        
+        
+        delay(2);
+        
+        
     }
     return 0;
 }
