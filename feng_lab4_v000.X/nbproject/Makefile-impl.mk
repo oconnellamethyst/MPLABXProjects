@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=feng_lab4_v001.X
+PROJECTNAME=feng_lab4_v000.X
 
 # Active Configuration
 DEFAULTCONF=default

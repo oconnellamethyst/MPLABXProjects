@@ -33,6 +33,32 @@ void __attribute__((interrupt,auto_psv)) _T2Interrupt(){
     IFS0bits.T2IF = 0;
     rollover ++;
 }
+
+
+//Starting from Discussion 6 code
+void __attribute__((__interrupt__,__auto_psv__)) _IC1Interrupt(void) //Takes care of what we do
+{
+    _INT0IF = 0;
+
+    if (_INT0EP == 0){   // I was waiting for a rising edge
+        TMR1 = 0;
+        overflow = 0;
+    } else { // I was waiting for a falling edge
+        numCycles = TMR1 + 16000L * overflow; // What is this? how many cycles? 16000 is one ms, number of cycles in ms. That L is long int, which we need cause that multiplication is going to be bigger than 65535. 
+//        TMR1 = 0;         // uncomment these two lines if you want the period
+//        overflow = 0;     //       and not just active duty cycle. also
+                            //       delete the if part, and the last line
+                            //       that changes polarity of INT0EP
+    }
+    
+    if (numCycles>=2){
+        //do debouncing things?
+    }
+
+    _INT0EP = 1 - _INT0EP; //BTG... or XOR = 1, basically we're flipping this.
+}
+
+
 void setup(void)
 {
     CLKDIVbits.RCDIV = 0;  //Set RCDIV=1:1 (default 2:1) 32MHz or FCY/2=16M

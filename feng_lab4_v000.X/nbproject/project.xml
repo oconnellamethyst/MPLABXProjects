@@ -3,7 +3,7 @@
     <type>com.microchip.mplab.nbide.embedded.makeproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
-            <name>feng_lab4_v001</name>
+            <name>feng_lab4_v000</name>
             <creation-uuid>768ee03c-daef-4daf-a2a5-4698ef347984</creation-uuid>
             <make-project-type>0</make-project-type>
             <c-extensions>c</c-extensions>
