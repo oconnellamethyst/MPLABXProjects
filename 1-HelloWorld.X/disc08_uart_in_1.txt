@@ -1,0 +1,16 @@
+wait 2 ms
+42
+wait 10 ms
+34
+wait 20 ms
+3c
+wait 1 ms
+0D 0A
+wait 200 ms
+"This is a message put in via a message file and fed as UART input."
+wait 1 ms
+0D 0A
+"The answer is.... 42!" 
+wait 1 ms
+0D 0A
+

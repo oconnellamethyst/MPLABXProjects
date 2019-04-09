@@ -16,7 +16,7 @@ Command:
   -L/opt/microchip/xc16/v1.35/bin/bin/../../support/dsPIC33C/gld \
   -L/opt/microchip/xc16/v1.35/bin/bin/../../support/dsPIC33E/gld \
   -L/opt/microchip/xc16/v1.35/bin/bin/../../support/dsPIC33F/gld \
-  build/default/debug/disc07_IC_breakdown.o \
+  build/default/debug/int_first_t1.o \
   --defsym=__MPLAB_BUILD=1 \
   --defsym=__MPLAB_DEBUG=1 \
   --defsym=__DEBUG=1 \
@@ -61,18 +61,20 @@ xc16-ld 1.35 (A)
 
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
-.text                        0x200                0xce           0x135  (309)
-.text                        0x2ce               0x122           0x1b3  (435)
+.text                        0x200                0xee           0x165  (357)
+.text                        0x2ee                0x38            0x54  (84)
+.dinit                       0x326                 0x8             0xc  (12)
 
-                 Total "program" memory used (bytes):          0x2e8  (744) 1%
+                 Total "program" memory used (bytes):          0x1c5  (453) <1%
 
 
 "data" Memory  [Origin = 0x800, Length = 0x2000]
 
 section                    address      alignment gaps    total length  (dec)
 -------                    -------      --------------    -------------------
+.nbss                        0x800                   0             0x4  (4)
 
-                 Total "data" memory used (bytes):              0  (0) 
+                 Total "data" memory used (bytes):            0x4  (4) <1%
 
 
 Dynamic Memory Usage
@@ -80,10 +82,18 @@ Dynamic Memory Usage
 region                     address                      maximum length  (dec)
 ------                     -------                      ---------------------
 heap                             0                                   0  (0)
-stack                        0x800                              0x2000  (8192)
+stack                        0x804                              0x1ffc  (8188)
 
-                 Maximum dynamic memory (bytes):         0x2000  (8192)
+                 Maximum dynamic memory (bytes):         0x1ffc  (8188)
 
+
+External Symbols in Data Memory (by address):
+
+                    0x0800                  _msecs
+
+External Symbols in Data Memory (by name):
+
+                    0x0800                  _msecs
 
 External Symbols in Program Memory (by address):
 
@@ -91,19 +101,21 @@ External Symbols in Program Memory (by address):
                   0x00023c                  __psv_init
                   0x000252                  __data_init
                   0x000252                  __data_init_standard
-                  0x0002c8                  __DefaultInterrupt
-                  0x0002ce                  _setup
-                  0x00033e                  _main
+                  0x0002c8                  __T1Interrupt
+                  0x0002e8                  __DefaultInterrupt
+                  0x0002ee                  _setup
+                  0x000314                  _main
 
 External Symbols in Program Memory (by name):
 
-                  0x0002c8                  __DefaultInterrupt
+                  0x0002e8                  __DefaultInterrupt
+                  0x0002c8                  __T1Interrupt
                   0x000252                  __data_init
                   0x000252                  __data_init_standard
                   0x00023c                  __psv_init
                   0x000200                  __resetPRI
-                  0x00033e                  _main
-                  0x0002ce                  _setup
+                  0x000314                  _main
+                  0x0002ee                  _setup
 
 Memory Configuration
 
@@ -120,7 +132,7 @@ CONFIG1          0x00abfe           0x000002
 
 Linker script and memory map
 
-LOAD build/default/debug/disc07_IC_breakdown.o
+LOAD build/default/debug/int_first_t1.o
                     0x0001                  __MPLAB_BUILD = 0x1
                     0x0001                  __MPLAB_DEBUG = 0x1
                     0x0001                  __DEBUG = 0x1
@@ -143,7 +155,7 @@ LOAD /opt/microchip/xc16/v1.35/bin/bin/../../lib/libfx-elf.a
                   0x000002          0x2 SHORT 0x0 ((ABSOLUTE (__reset) >> 0x10) & 0x7f)
                   0x000003          0x2 SHORT 0x0
 
-.text             0x000200         0xce
+.text             0x000200         0xee
  *(.init)
  .init            0x000200         0x4c /opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-pic30-elf.a(crt0_standard.o)
                   0x000200                  __reset
@@ -155,16 +167,18 @@ LOAD /opt/microchip/xc16/v1.35/bin/bin/../../lib/libfx-elf.a
  *(.user_init)
  *(.handle)
  *(.isr*)
- .isr             0x0002c8          0x4 default_isr
-                  0x0002c8                  __DefaultInterrupt
+ .isr.text        0x0002c8         0x20 build/default/debug/int_first_t1.o
+                  0x0002c8                  __T1Interrupt
+ .isr             0x0002e8          0x4 default_isr
+                  0x0002e8                  __DefaultInterrupt
  *(.libc)
  *(.libm)
  *(.libdsp)
  *(.lib*)
  .libpic30_crt_start_mode
-                  0x0002cc          0x2 /opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-pic30-elf.a(crt_start_mode_normal.Leo)
-                  0x0002cc                  __crt_start_mode_normal
-                  0x0002cc                  __crt_start_mode
+                  0x0002ec          0x2 /opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-pic30-elf.a(crt_start_mode_normal.Leo)
+                  0x0002ec                  __crt_start_mode_normal
+                  0x0002ec                  __crt_start_mode
 
 usercode
  *(usercode)
@@ -178,26 +192,26 @@ __CONFIG1
 .comment
  *(.comment)
 
-.debug_info       0x000000        0xb11
+.debug_info       0x000000        0x89b
  *(.debug_info)
- .debug_info      0x000000        0xb11 build/default/debug/disc07_IC_breakdown.o
+ .debug_info      0x000000        0x89b build/default/debug/int_first_t1.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev     0x000000        0x13a
+.debug_abbrev     0x000000        0x144
  *(.debug_abbrev)
- .debug_abbrev    0x000000        0x13a build/default/debug/disc07_IC_breakdown.o
+ .debug_abbrev    0x000000        0x144 build/default/debug/int_first_t1.o
 
-.debug_line       0x000000        0x106
+.debug_line       0x000000         0xe8
  *(.debug_line)
- .debug_line      0x000000        0x106 build/default/debug/disc07_IC_breakdown.o
+ .debug_line      0x000000         0xe8 build/default/debug/int_first_t1.o
 
-.debug_frame      0x000000         0x4c
+.debug_frame      0x000000         0x76
  *(.debug_frame)
- .debug_frame     0x000000         0x4c build/default/debug/disc07_IC_breakdown.o
+ .debug_frame     0x000000         0x76 build/default/debug/int_first_t1.o
 
-.debug_str        0x000000         0x3e
+.debug_str        0x000000         0x30
  *(.debug_str)
- .debug_str       0x000000         0x3e build/default/debug/disc07_IC_breakdown.o
+ .debug_str       0x000000         0x30 build/default/debug/int_first_t1.o
 
 .debug_loc
  *(.debug_loc)
@@ -206,10 +220,10 @@ __CONFIG1
  *(.debug_macinfo)
 
 .debug_pubnames
-                  0x000000         0x25
+                  0x000000         0x40
  *(.debug_pubnames)
  .debug_pubnames
-                  0x000000         0x25 build/default/debug/disc07_IC_breakdown.o
+                  0x000000         0x40 build/default/debug/int_first_t1.o
 
 .debug_ranges
  *(.debug_ranges)
@@ -217,7 +231,7 @@ __CONFIG1
 .debug_aranges    0x000000         0x18
  *(.debug_aranges)
  .debug_aranges
-                  0x000000         0x18 build/default/debug/disc07_IC_breakdown.o
+                  0x000000         0x18 build/default/debug/int_first_t1.o
                     0x0000                  WREG0 = 0x0
                     0x0000                  _WREG0 = 0x0
                     0x0002                  WREG1 = 0x2
@@ -801,29 +815,42 @@ LOAD /opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-c-elf.a
 END GROUP
 OUTPUT(dist/default/debug/1-HelloWorld.X.debug.elf elf32-pic30)
 LOAD default_isr
+LOAD data_init
 
 .debug_pubtypes
-                  0x000018         0xdd
+                  0x000018         0xb6
  .debug_pubtypes
-                  0x000018         0xdd build/default/debug/disc07_IC_breakdown.o
+                  0x000018         0xb6 build/default/debug/int_first_t1.o
 
 __c30_signature
-                  0x0000f5         0x12
+                  0x0000ce         0x12
  __c30_signature
-                  0x0000f5          0x6 build/default/debug/disc07_IC_breakdown.o
+                  0x0000ce          0x6 build/default/debug/int_first_t1.o
  __c30_signature
-                  0x0000fb          0x6 /opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-pic30-elf.a(crt0_standard.o)
+                  0x0000d4          0x6 /opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-pic30-elf.a(crt0_standard.o)
  __c30_signature
-                  0x000101          0x6 /opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-pic30-elf.a(data_init_standard.o)
+                  0x0000da          0x6 /opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-pic30-elf.a(data_init_standard.o)
+
+.nbss               0x0800          0x4
+ .nbss              0x0800          0x4 build/default/debug/int_first_t1.o
+                    0x0800                  _msecs
 
 .config_JTAGEN    0x00abfe          0x2
  .config_JTAGEN
-                  0x00abfe          0x2 build/default/debug/disc07_IC_breakdown.o
+                  0x00abfe          0x2 build/default/debug/int_first_t1.o
 
 .config_IESO      0x00abfc          0x2
- .config_IESO     0x00abfc          0x2 build/default/debug/disc07_IC_breakdown.o
+ .config_IESO     0x00abfc          0x2 build/default/debug/int_first_t1.o
 
-.text             0x0002ce        0x122
- .text            0x0002ce        0x122 build/default/debug/disc07_IC_breakdown.o
-                  0x0002ce                  _setup
-                  0x00033e                  _main
+.ivt._T1Interrupt
+                  0x00001a          0x2
+ .ivt._T1Interrupt
+                  0x00001a          0x2 build/default/debug/int_first_t1.o
+
+.text             0x0002ee         0x38
+ .text            0x0002ee         0x38 build/default/debug/int_first_t1.o
+                  0x0002ee                  _setup
+                  0x000314                  _main
+
+.dinit            0x000326          0x8
+ .dinit           0x000326          0x8 data_init

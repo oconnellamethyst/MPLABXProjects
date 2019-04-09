@@ -16,7 +16,7 @@ Command:
   -L/opt/microchip/xc16/v1.35/bin/bin/../../support/dsPIC33C/gld \
   -L/opt/microchip/xc16/v1.35/bin/bin/../../support/dsPIC33E/gld \
   -L/opt/microchip/xc16/v1.35/bin/bin/../../support/dsPIC33F/gld \
-  build/default/production/disc07_IC_breakdown.o \
+  build/default/production/disc08_UART.o \
   --defsym=__MPLAB_BUILD=1 \
   -Tp24FJ64GA002.gld.00 \
   --stack=16 \
@@ -58,18 +58,21 @@ xc16-ld 1.35 (A)
 
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
-.text                        0x200                0xce           0x135  (309)
-.text                        0x2ce               0x122           0x1b3  (435)
+.text                        0x200                0xfc           0x17a  (378)
+.text                        0x2fc               0x100           0x180  (384)
+.dinit                       0x3fc                 0xe            0x15  (21)
 
-                 Total "program" memory used (bytes):          0x2e8  (744) 1%
+                 Total "program" memory used (bytes):          0x30f  (783) 1%
 
 
 "data" Memory  [Origin = 0x800, Length = 0x2000]
 
 section                    address      alignment gaps    total length  (dec)
 -------                    -------      --------------    -------------------
+.nbss                        0x800                   0             0x2  (2)
+.bss                         0x802                   0            0x40  (64)
 
-                 Total "data" memory used (bytes):              0  (0) 
+                 Total "data" memory used (bytes):           0x42  (66) <1%
 
 
 Dynamic Memory Usage
@@ -77,10 +80,22 @@ Dynamic Memory Usage
 region                     address                      maximum length  (dec)
 ------                     -------                      ---------------------
 heap                             0                                   0  (0)
-stack                        0x800                              0x2000  (8192)
+stack                        0x842                              0x1fbe  (8126)
 
-                 Maximum dynamic memory (bytes):         0x2000  (8192)
+                 Maximum dynamic memory (bytes):         0x1fbe  (8126)
 
+
+External Symbols in Data Memory (by address):
+
+                    0x0800                  _front
+                    0x0801                  _back
+                    0x0802                  _buffer
+
+External Symbols in Data Memory (by name):
+
+                    0x0801                  _back
+                    0x0802                  _buffer
+                    0x0800                  _front
 
 External Symbols in Program Memory (by address):
 
@@ -88,19 +103,25 @@ External Symbols in Program Memory (by address):
                   0x00023c                  __psv_init
                   0x000252                  __data_init
                   0x000252                  __data_init_standard
-                  0x0002c8                  __DefaultInterrupt
-                  0x0002ce                  _setup
-                  0x00033e                  _main
+                  0x0002c8                  __U1RXInterrupt
+                  0x0002f6                  __DefaultInterrupt
+                  0x0002fc                  _PPutch
+                  0x000316                  _PGetch
+                  0x00033c                  _setup
+                  0x0003a2                  _main
 
 External Symbols in Program Memory (by name):
 
-                  0x0002c8                  __DefaultInterrupt
+                  0x000316                  _PGetch
+                  0x0002fc                  _PPutch
+                  0x0002f6                  __DefaultInterrupt
+                  0x0002c8                  __U1RXInterrupt
                   0x000252                  __data_init
                   0x000252                  __data_init_standard
                   0x00023c                  __psv_init
                   0x000200                  __resetPRI
-                  0x00033e                  _main
-                  0x0002ce                  _setup
+                  0x0003a2                  _main
+                  0x00033c                  _setup
 
 Memory Configuration
 
@@ -117,7 +138,7 @@ CONFIG1          0x00abfe           0x000002
 
 Linker script and memory map
 
-LOAD build/default/production/disc07_IC_breakdown.o
+LOAD build/default/production/disc08_UART.o
                     0x0001                  __MPLAB_BUILD = 0x1
 LOAD pPIC24Fxxx
 LOAD /opt/microchip/xc16/v1.35/bin/bin/../../lib/libfx-elf.a
@@ -137,7 +158,7 @@ LOAD /opt/microchip/xc16/v1.35/bin/bin/../../lib/libfx-elf.a
                   0x000002          0x2 SHORT 0x0 ((ABSOLUTE (__reset) >> 0x10) & 0x7f)
                   0x000003          0x2 SHORT 0x0
 
-.text             0x000200         0xce
+.text             0x000200         0xfc
  *(.init)
  .init            0x000200         0x4c /opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-pic30-elf.a(crt0_standard.o)
                   0x000200                  __reset
@@ -149,16 +170,18 @@ LOAD /opt/microchip/xc16/v1.35/bin/bin/../../lib/libfx-elf.a
  *(.user_init)
  *(.handle)
  *(.isr*)
- .isr             0x0002c8          0x4 default_isr
-                  0x0002c8                  __DefaultInterrupt
+ .isr.text        0x0002c8         0x2e build/default/production/disc08_UART.o
+                  0x0002c8                  __U1RXInterrupt
+ .isr             0x0002f6          0x4 default_isr
+                  0x0002f6                  __DefaultInterrupt
  *(.libc)
  *(.libm)
  *(.libdsp)
  *(.lib*)
  .libpic30_crt_start_mode
-                  0x0002cc          0x2 /opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-pic30-elf.a(crt_start_mode_normal.Leo)
-                  0x0002cc                  __crt_start_mode_normal
-                  0x0002cc                  __crt_start_mode
+                  0x0002fa          0x2 /opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-pic30-elf.a(crt_start_mode_normal.Leo)
+                  0x0002fa                  __crt_start_mode_normal
+                  0x0002fa                  __crt_start_mode
 
 usercode
  *(usercode)
@@ -172,26 +195,26 @@ __CONFIG1
 .comment
  *(.comment)
 
-.debug_info       0x000000        0xb11
+.debug_info       0x000000        0xf6a
  *(.debug_info)
- .debug_info      0x000000        0xb11 build/default/production/disc07_IC_breakdown.o
+ .debug_info      0x000000        0xf6a build/default/production/disc08_UART.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev     0x000000        0x13a
+.debug_abbrev     0x000000        0x195
  *(.debug_abbrev)
- .debug_abbrev    0x000000        0x13a build/default/production/disc07_IC_breakdown.o
+ .debug_abbrev    0x000000        0x195 build/default/production/disc08_UART.o
 
-.debug_line       0x000000        0x106
+.debug_line       0x000000        0x107
  *(.debug_line)
- .debug_line      0x000000        0x106 build/default/production/disc07_IC_breakdown.o
+ .debug_line      0x000000        0x107 build/default/production/disc08_UART.o
 
-.debug_frame      0x000000         0x4c
+.debug_frame      0x000000         0xb6
  *(.debug_frame)
- .debug_frame     0x000000         0x4c build/default/production/disc07_IC_breakdown.o
+ .debug_frame     0x000000         0xb6 build/default/production/disc08_UART.o
 
-.debug_str        0x000000         0x3e
+.debug_str        0x000000         0x52
  *(.debug_str)
- .debug_str       0x000000         0x3e build/default/production/disc07_IC_breakdown.o
+ .debug_str       0x000000         0x52 build/default/production/disc08_UART.o
 
 .debug_loc
  *(.debug_loc)
@@ -200,10 +223,10 @@ __CONFIG1
  *(.debug_macinfo)
 
 .debug_pubnames
-                  0x000000         0x25
+                  0x000000         0x6c
  *(.debug_pubnames)
  .debug_pubnames
-                  0x000000         0x25 build/default/production/disc07_IC_breakdown.o
+                  0x000000         0x6c build/default/production/disc08_UART.o
 
 .debug_ranges
  *(.debug_ranges)
@@ -211,7 +234,7 @@ __CONFIG1
 .debug_aranges    0x000000         0x18
  *(.debug_aranges)
  .debug_aranges
-                  0x000000         0x18 build/default/production/disc07_IC_breakdown.o
+                  0x000000         0x18 build/default/production/disc08_UART.o
                     0x0000                  WREG0 = 0x0
                     0x0000                  _WREG0 = 0x0
                     0x0002                  WREG1 = 0x2
@@ -795,29 +818,49 @@ LOAD /opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-c-elf.a
 END GROUP
 OUTPUT(dist/default/production/1-HelloWorld.X.production.elf elf32-pic30)
 LOAD default_isr
+LOAD data_init
 
 .debug_pubtypes
-                  0x000018         0xdd
+                  0x000018        0x11b
  .debug_pubtypes
-                  0x000018         0xdd build/default/production/disc07_IC_breakdown.o
+                  0x000018        0x11b build/default/production/disc08_UART.o
 
 __c30_signature
-                  0x0000f5         0x12
+                  0x000133         0x12
  __c30_signature
-                  0x0000f5          0x6 build/default/production/disc07_IC_breakdown.o
+                  0x000133          0x6 build/default/production/disc08_UART.o
  __c30_signature
-                  0x0000fb          0x6 /opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-pic30-elf.a(crt0_standard.o)
+                  0x000139          0x6 /opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-pic30-elf.a(crt0_standard.o)
  __c30_signature
-                  0x000101          0x6 /opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-pic30-elf.a(data_init_standard.o)
+                  0x00013f          0x6 /opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-pic30-elf.a(data_init_standard.o)
+
+.nbss               0x0800          0x2
+ .nbss              0x0800          0x2 build/default/production/disc08_UART.o
+                    0x0800                  _front
+                    0x0801                  _back
+
+.bss                0x0802         0x40
+ .bss               0x0802         0x40 build/default/production/disc08_UART.o
+                    0x0802                  _buffer
 
 .config_JTAGEN    0x00abfe          0x2
  .config_JTAGEN
-                  0x00abfe          0x2 build/default/production/disc07_IC_breakdown.o
+                  0x00abfe          0x2 build/default/production/disc08_UART.o
 
 .config_IESO      0x00abfc          0x2
- .config_IESO     0x00abfc          0x2 build/default/production/disc07_IC_breakdown.o
+ .config_IESO     0x00abfc          0x2 build/default/production/disc08_UART.o
 
-.text             0x0002ce        0x122
- .text            0x0002ce        0x122 build/default/production/disc07_IC_breakdown.o
-                  0x0002ce                  _setup
-                  0x00033e                  _main
+.ivt._U1RXInterrupt
+                  0x00002a          0x2
+ .ivt._U1RXInterrupt
+                  0x00002a          0x2 build/default/production/disc08_UART.o
+
+.text             0x0002fc        0x100
+ .text            0x0002fc        0x100 build/default/production/disc08_UART.o
+                  0x0002fc                  _PPutch
+                  0x000316                  _PGetch
+                  0x00033c                  _setup
+                  0x0003a2                  _main
+
+.dinit            0x0003fc          0xe
+ .dinit           0x0003fc          0xe data_init
