@@ -47,7 +47,9 @@ void microDelay(int delay_in_ms){
 void setup(){
     CLKDIVbits.RCDIV = 0;
     AD1PCFG = 0xFFFF;
-   
+    
+    
+    I2C2CONbits.I2CEN = 0;   
     I2C2CON = 0;
     I2C2BRG = 0x9D;
     IFS3bits.MI2C2IF = 0;
@@ -61,7 +63,7 @@ void lcd_cmd(char package){
     I2C2TRN = 0b01111100;
     while(IFS3bits.MI2C2IF == 0);
     IFS3bits.MI2C2IF = 0;
-    I2C2TRN = 0b01111100;
+    I2C2TRN = 0b00000000;
     while(IFS3bits.MI2C2IF == 0);
     IFS3bits.MI2C2IF = 0;
     I2C2TRN = package;
@@ -134,7 +136,7 @@ void lcd_printChar(char myChar){
     I2C2TRN = 0b01000000;
     while(!IFS3bits.MI2C2IF);
     IFS3bits.MI2C2IF = 0;
-    I2C2TRN = 0b01000001;
+    I2C2TRN = 0b10110001;
     while(!IFS3bits.MI2C2IF);
     IFS3bits.MI2C2IF = 0;
     I2C2CONbits.PEN = 1;
@@ -144,8 +146,11 @@ void lcd_printChar(char myChar){
 int main(void) {
     setup();
     lcd_init();
+    lcd_cmd(0b00000001);
     while(1){
-        lcd_printChar('a');
+       lcd_setCursor(0,0);
+       lcd_printChar('a');
+  
 
     }
     
