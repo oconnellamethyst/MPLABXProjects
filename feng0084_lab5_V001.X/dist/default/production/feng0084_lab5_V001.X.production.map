@@ -1,23 +1,23 @@
 Microchip Technology Inc, v1.35 (A)
 
 Tool Name:
-  /opt/microchip/xc16/v1.35/bin/bin/../bin/elf-ld
+  c:\program files (x86)\microchip\xc16\v1.35\bin\bin\..\bin/elf-ld.exe
 
 Command:
   -p24FJ64GA002 \
   -o \
   dist/default/production/feng0084_lab5_V001.X.production.elf \
-  -L/opt/microchip/xc16/v1.35/bin/bin/.. \
-  -L/opt/microchip/xc16/v1.35/bin/bin/../../lib \
-  -L/opt/microchip/xc16/v1.35/bin/bin/../../support/PIC24E/gld \
-  -L/opt/microchip/xc16/v1.35/bin/bin/../../support/PIC24F/gld \
-  -L/opt/microchip/xc16/v1.35/bin/bin/../../support/PIC24H/gld \
-  -L/opt/microchip/xc16/v1.35/bin/bin/../../support/dsPIC30F/gld \
-  -L/opt/microchip/xc16/v1.35/bin/bin/../../support/dsPIC33C/gld \
-  -L/opt/microchip/xc16/v1.35/bin/bin/../../support/dsPIC33E/gld \
-  -L/opt/microchip/xc16/v1.35/bin/bin/../../support/dsPIC33F/gld \
+  -Lc:/program files (x86)/microchip/xc16/v1.35/bin/bin/.. \
+  -Lc:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib \
+  -Lc:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../support/PIC24E/gld \
+  -Lc:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../support/PIC24F/gld \
+  -Lc:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../support/PIC24H/gld \
+  -Lc:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../support/dsPIC30F/gld \
+  -Lc:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../support/dsPIC33C/gld \
+  -Lc:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../support/dsPIC33E/gld \
+  -Lc:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../support/dsPIC33F/gld \
+  build/default/production/_ext/589703195/feng_lab2b_asmLib_v001.o \
   build/default/production/feng0084_lab5_main_v001.o \
-  build/default/production/feng_lab2b_asmLib_v001.o \
   --defsym=__MPLAB_BUILD=1 \
   -Tp24FJ64GA002.gld.00 \
   --stack=16 \
@@ -45,12 +45,14 @@ Command:
 Optional library libpPIC24Fxxx.a not found
 Archive member included because of file (symbol)
 
-/opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-pic30-elf.a(crt0_standard.o)
+c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o)
                               (__resetPRI)
-/opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-pic30-elf.a(data_init_standard.o)
-                              /opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-pic30-elf.a(crt0_standard.o) (__data_init_standard)
-/opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-pic30-elf.a(crt_start_mode_normal.Leo)
+c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-pic30-elf.a(data_init_standard.o)
+                              c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o) (__data_init_standard)
+c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-pic30-elf.a(crt_start_mode_normal.Leo)
                               (__crt_start_mode_normal)
+c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-c-elf.a(strlen.XX_eo)
+                              build/default/production/feng0084_lab5_main_v001.o (_strlen)
 
 
 xc16-ld 1.35 (A)
@@ -59,10 +61,11 @@ xc16-ld 1.35 (A)
 
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
-.text                        0x200                0xce           0x135  (309)
-.text                        0x2ce               0x1da           0x2c7  (711)
+.text                        0x200                0xda           0x147  (327)
+.const                       0x2da                0x1e            0x2d  (45)
+.text                        0x2f8               0x42a           0x63f  (1599)
 
-                 Total "program" memory used (bytes):          0x3fc  (1020) 1%
+                 Total "program" memory used (bytes):          0x7b3  (1971) 3%
 
 
 "data" Memory  [Origin = 0x800, Length = 0x2000]
@@ -87,21 +90,27 @@ External Symbols in Program Memory (by address):
 
                   0x000200                  __resetPRI
                   0x00023c                  __psv_init
-                  0x000252                  __data_init
                   0x000252                  __data_init_standard
+                  0x000252                  __data_init
                   0x0002c8                  __DefaultInterrupt
-                  0x0002ce                  _delay
-                  0x0002e8                  _microDelay
-                  0x000302                  _setup
-                  0x000320                  _lcd_cmd
-                  0x000370                  _lcd_init
-                  0x0003c2                  _lcd_setCursor
-                  0x000418                  _lcd_printChar
-                  0x00046a                  _main
-                  0x000480                  _micro_wait
-                  0x000486                  _ms_wait
-                  0x00048c                  _write_0
-                  0x00049a                  _write_1
+                  0x0002ce                  _strlen
+                  0x0002f8                  _setup
+                  0x000322                  _delay
+                  0x00033c                  _microDelay
+                  0x000356                  _lcd_cmd
+                  0x0003a6                  _lcd_init
+                  0x0003f8                  _lcd_printChar
+                  0x00044a                  _lcd_setCursor
+                  0x000490                  _getCoordinates
+                  0x0004c8                  _lcd_printStr
+                  0x0005dc                  _scroll_left
+                  0x000660                  _scroll_right
+                  0x0006de                  _lcd_clear
+                  0x0006e8                  _main
+                  0x0006fa                  _micro_wait
+                  0x000700                  _ms_wait
+                  0x000706                  _write_0
+                  0x000714                  _write_1
 
 External Symbols in Program Memory (by name):
 
@@ -110,18 +119,24 @@ External Symbols in Program Memory (by name):
                   0x000252                  __data_init_standard
                   0x00023c                  __psv_init
                   0x000200                  __resetPRI
-                  0x0002ce                  _delay
-                  0x000320                  _lcd_cmd
-                  0x000370                  _lcd_init
-                  0x000418                  _lcd_printChar
-                  0x0003c2                  _lcd_setCursor
-                  0x00046a                  _main
-                  0x0002e8                  _microDelay
-                  0x000480                  _micro_wait
-                  0x000486                  _ms_wait
-                  0x000302                  _setup
-                  0x00048c                  _write_0
-                  0x00049a                  _write_1
+                  0x000322                  _delay
+                  0x000490                  _getCoordinates
+                  0x0006de                  _lcd_clear
+                  0x000356                  _lcd_cmd
+                  0x0003a6                  _lcd_init
+                  0x0003f8                  _lcd_printChar
+                  0x0004c8                  _lcd_printStr
+                  0x00044a                  _lcd_setCursor
+                  0x0006e8                  _main
+                  0x00033c                  _microDelay
+                  0x0006fa                  _micro_wait
+                  0x000700                  _ms_wait
+                  0x0005dc                  _scroll_left
+                  0x000660                  _scroll_right
+                  0x0002f8                  _setup
+                  0x0002ce                  _strlen
+                  0x000706                  _write_0
+                  0x000714                  _write_1
 
 Memory Configuration
 
@@ -138,11 +153,11 @@ CONFIG1          0x00abfe           0x000002
 
 Linker script and memory map
 
+LOAD build/default/production/_ext/589703195/feng_lab2b_asmLib_v001.o
 LOAD build/default/production/feng0084_lab5_main_v001.o
-LOAD build/default/production/feng_lab2b_asmLib_v001.o
                     0x0001                  __MPLAB_BUILD = 0x1
 LOAD pPIC24Fxxx
-LOAD /opt/microchip/xc16/v1.35/bin/bin/../../lib/libfx-elf.a
+LOAD c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libfx-elf.a
                     0xabfc                  __CONFIG2 = 0xabfc
                     0xabfe                  __CONFIG1 = 0xabfe
                     0x0001                  __NO_HANDLES = 0x1
@@ -159,15 +174,15 @@ LOAD /opt/microchip/xc16/v1.35/bin/bin/../../lib/libfx-elf.a
                   0x000002          0x2 SHORT 0x0 ((ABSOLUTE (__reset) >> 0x10) & 0x7f)
                   0x000003          0x2 SHORT 0x0
 
-.text             0x000200         0xce
+.text             0x000200         0xda
  *(.init)
- .init            0x000200         0x4c /opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-pic30-elf.a(crt0_standard.o)
-                  0x000200                  __reset
+ .init            0x000200         0x4c c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o)
                   0x000200                  __resetPRI
+                  0x000200                  __reset
                   0x00023c                  __psv_init
- .init            0x00024c         0x7c /opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-pic30-elf.a(data_init_standard.o)
-                  0x000252                  __data_init
+ .init            0x00024c         0x7c c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-pic30-elf.a(data_init_standard.o)
                   0x000252                  __data_init_standard
+                  0x000252                  __data_init
  *(.user_init)
  *(.handle)
  *(.isr*)
@@ -178,9 +193,11 @@ LOAD /opt/microchip/xc16/v1.35/bin/bin/../../lib/libfx-elf.a
  *(.libdsp)
  *(.lib*)
  .libpic30_crt_start_mode
-                  0x0002cc          0x2 /opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-pic30-elf.a(crt_start_mode_normal.Leo)
-                  0x0002cc                  __crt_start_mode_normal
+                  0x0002cc          0x2 c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-pic30-elf.a(crt_start_mode_normal.Leo)
                   0x0002cc                  __crt_start_mode
+                  0x0002cc                  __crt_start_mode_normal
+ .libc.strlen     0x0002ce          0xc c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-c-elf.a(strlen.XX_eo)
+                  0x0002ce                  _strlen
 
 usercode
  *(usercode)
@@ -194,29 +211,29 @@ __CONFIG1
 .comment
  *(.comment)
 
-.debug_info       0x000000        0x71b
+.debug_info       0x000000        0xda0
  *(.debug_info)
- .debug_info      0x000000        0x682 build/default/production/feng0084_lab5_main_v001.o
- .debug_info      0x000682         0x99 build/default/production/feng_lab2b_asmLib_v001.o
+ .debug_info      0x000000         0xb9 build/default/production/_ext/589703195/feng_lab2b_asmLib_v001.o
+ .debug_info      0x0000b9        0xce7 build/default/production/feng0084_lab5_main_v001.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev     0x000000        0x150
+.debug_abbrev     0x000000        0x1c7
  *(.debug_abbrev)
- .debug_abbrev    0x000000        0x13c build/default/production/feng0084_lab5_main_v001.o
- .debug_abbrev    0x00013c         0x14 build/default/production/feng_lab2b_asmLib_v001.o
+ .debug_abbrev    0x000000         0x14 build/default/production/_ext/589703195/feng_lab2b_asmLib_v001.o
+ .debug_abbrev    0x000014        0x1b3 build/default/production/feng0084_lab5_main_v001.o
 
-.debug_line       0x000000        0x18a
+.debug_line       0x000000        0x23d
  *(.debug_line)
- .debug_line      0x000000        0x132 build/default/production/feng0084_lab5_main_v001.o
- .debug_line      0x000132         0x58 build/default/production/feng_lab2b_asmLib_v001.o
+ .debug_line      0x000000         0x78 build/default/production/_ext/589703195/feng_lab2b_asmLib_v001.o
+ .debug_line      0x000078        0x1c5 build/default/production/feng0084_lab5_main_v001.o
 
-.debug_frame      0x000000         0xf4
+.debug_frame      0x000000        0x186
  *(.debug_frame)
- .debug_frame     0x000000         0xf4 build/default/production/feng0084_lab5_main_v001.o
+ .debug_frame     0x000000        0x186 build/default/production/feng0084_lab5_main_v001.o
 
-.debug_str        0x000000         0x2c
+.debug_str        0x000000         0x61
  *(.debug_str)
- .debug_str       0x000000         0x2c build/default/production/feng0084_lab5_main_v001.o
+ .debug_str       0x000000         0x61 build/default/production/feng0084_lab5_main_v001.o
 
 .debug_loc
  *(.debug_loc)
@@ -225,10 +242,10 @@ __CONFIG1
  *(.debug_macinfo)
 
 .debug_pubnames
-                  0x000000         0x7b
+                  0x000000         0xce
  *(.debug_pubnames)
  .debug_pubnames
-                  0x000000         0x7b build/default/production/feng0084_lab5_main_v001.o
+                  0x000000         0xce build/default/production/feng0084_lab5_main_v001.o
 
 .debug_ranges
  *(.debug_ranges)
@@ -236,9 +253,9 @@ __CONFIG1
 .debug_aranges    0x000000         0x30
  *(.debug_aranges)
  .debug_aranges
-                  0x000000         0x18 build/default/production/feng0084_lab5_main_v001.o
+                  0x000000         0x18 build/default/production/_ext/589703195/feng_lab2b_asmLib_v001.o
  .debug_aranges
-                  0x000018         0x18 build/default/production/feng_lab2b_asmLib_v001.o
+                  0x000018         0x18 build/default/production/feng0084_lab5_main_v001.o
                     0x0000                  WREG0 = 0x0
                     0x0000                  _WREG0 = 0x0
                     0x0002                  WREG1 = 0x2
@@ -816,46 +833,49 @@ __CONFIG1
                     0x0230                  UART2 = 0x230
                     0x0230                  _UART2 = 0x230
 START GROUP
-LOAD /opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-pic30-elf.a
-LOAD /opt/microchip/xc16/v1.35/bin/bin/../../lib/libm-elf.a
-LOAD /opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-c-elf.a
+LOAD c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-pic30-elf.a
+LOAD c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libm-elf.a
+LOAD c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-c-elf.a
 END GROUP
 OUTPUT(dist/default/production/feng0084_lab5_V001.X.production.elf elf32-pic30)
 LOAD default_isr
 
 .debug_pubtypes
-                  0x000030         0x80
+                  0x000030         0xdb
  .debug_pubtypes
-                  0x000030         0x80 build/default/production/feng0084_lab5_main_v001.o
+                  0x000030         0xdb build/default/production/feng0084_lab5_main_v001.o
 
 __c30_signature
-                  0x0000b0         0x12
+                  0x00010b         0x18
  __c30_signature
-                  0x0000b0          0x6 build/default/production/feng0084_lab5_main_v001.o
+                  0x00010b          0x6 build/default/production/feng0084_lab5_main_v001.o
  __c30_signature
-                  0x0000b6          0x6 /opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-pic30-elf.a(crt0_standard.o)
+                  0x000111          0x6 c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o)
  __c30_signature
-                  0x0000bc          0x6 /opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-pic30-elf.a(data_init_standard.o)
+                  0x000117          0x6 c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-pic30-elf.a(data_init_standard.o)
+ __c30_signature
+                  0x00011d          0x6 c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-c-elf.a(strlen.XX_eo)
 
-.config_JTAGEN    0x00abfe          0x2
- .config_JTAGEN
-                  0x00abfe          0x2 build/default/production/feng0084_lab5_main_v001.o
+.const              0x82da         0x1e load address 0x0002da  
+ .const             0x82da         0x1e build/default/production/feng0084_lab5_main_v001.o
 
-.config_IESO      0x00abfc          0x2
- .config_IESO     0x00abfc          0x2 build/default/production/feng0084_lab5_main_v001.o
-
-.text             0x0002ce        0x1da
- .text            0x0002ce        0x1b2 build/default/production/feng0084_lab5_main_v001.o
-                  0x0002ce                  _delay
-                  0x0002e8                  _microDelay
-                  0x000302                  _setup
-                  0x000320                  _lcd_cmd
-                  0x000370                  _lcd_init
-                  0x0003c2                  _lcd_setCursor
-                  0x000418                  _lcd_printChar
-                  0x00046a                  _main
- .text            0x000480         0x28 build/default/production/feng_lab2b_asmLib_v001.o
-                  0x000480                  _micro_wait
-                  0x000486                  _ms_wait
-                  0x00048c                  _write_0
-                  0x00049a                  _write_1
+.text             0x0002f8        0x42a
+ .text            0x0002f8        0x402 build/default/production/feng0084_lab5_main_v001.o
+                  0x0002f8                  _setup
+                  0x000322                  _delay
+                  0x00033c                  _microDelay
+                  0x000356                  _lcd_cmd
+                  0x0003a6                  _lcd_init
+                  0x0003f8                  _lcd_printChar
+                  0x00044a                  _lcd_setCursor
+                  0x000490                  _getCoordinates
+                  0x0004c8                  _lcd_printStr
+                  0x0005dc                  _scroll_left
+                  0x000660                  _scroll_right
+                  0x0006de                  _lcd_clear
+                  0x0006e8                  _main
+ .text            0x0006fa         0x28 build/default/production/_ext/589703195/feng_lab2b_asmLib_v001.o
+                  0x0006fa                  _micro_wait
+                  0x000700                  _ms_wait
+                  0x000706                  _write_0
+                  0x000714                  _write_1

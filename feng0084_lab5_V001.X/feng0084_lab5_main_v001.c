@@ -5,29 +5,28 @@
  * Created on March 12, 2019, 12:34 AM
  */
 
-
 #include <p24FJ64GA002.h>
-
 #include "xc.h"
-#include<stdbool.h>
+#include "string.h"
+#include "stdbool.h"
 #include "feng_lab2b_asmLib_v001.h"
+#define slave_address_write 0b01111100;
+#define CONTRAST 0b10000000
 
-#pragma config ICS = PGx1          // Comm Channel Select (Emulator EMUC1/EMUD1 pins are shared with PGC1/PGD1)
-#pragma config FWDTEN = OFF        // Watchdog Timer Enable (Watchdog Timer is disabled)
-#pragma config GWRP = OFF          // General Code Segment Write Protect (Writes to program memory are allowed)
-#pragma config GCP = OFF           // General Code Segment Code Protect (Code protection is disabled)
-#pragma config JTAGEN = OFF        // JTAG Port Enable (JTAG port is disabled)
-
-
-// CW2: FLASH CONFIGURATION WORD 2 (see PIC24 Family Reference Manual 24.1)
-#pragma config I2C1SEL = PRI       // I2C1 Pin Location Select (Use default SCL1/SDA1 pins)
-#pragma config IOL1WAY = OFF       // IOLOCK Protection (IOLOCK may be changed via unlocking seq)
-#pragma config OSCIOFNC = ON       // Primary Oscillator I/O Function (CLKO/RC15 functions as I/O pin)
-#pragma config FCKSM = CSECME      // Clock Switching and Monitor (Clock switching is enabled, 
-                                       // Fail-Safe Clock Monitor is enabled)
-#pragma config FNOSC = FRCPLL      // Oscillator Select (Fast RC Oscillator with PLL module (FRCPLL))
-
-
+void setup(void) {
+    CLKDIVbits.RCDIV = 0;
+    AD1PCFG = 0xFFFF;
+    TRISBbits.TRISB2 = 0;
+    TRISBbits.TRISB3 = 0;
+    I2C2CON = 0;
+    I2C2BRG = 0x9D;
+    IFS3bits.MI2C2IF = 0;
+    I2C2CONbits.I2CEN = 1;
+    T1CON = 0;
+    PR1 = 432;
+    IFS0bits.T1IF = 0;
+    T1CONbits.TON = 1;
+}
 
 
 void delay(int delay_in_ms){            
@@ -44,36 +43,27 @@ void microDelay(int delay_in_ms){
     }
 }
 
-void setup(){
-    CLKDIVbits.RCDIV = 0;
-    AD1PCFG = 0xFFFF;
-    
-    
-    I2C2CONbits.I2CEN = 0;   
-    I2C2CON = 0;
-    I2C2BRG = 0x9D;
-    IFS3bits.MI2C2IF = 0;
-    I2C2CONbits.I2CEN = 1;
-}
 
-void lcd_cmd(char package){
+void lcd_cmd(char command) {
     I2C2CONbits.SEN = 1;
-    while(I2C2CONbits.SEN);
+    while (I2C2CONbits.SEN == 1);
     IFS3bits.MI2C2IF = 0;
-    I2C2TRN = 0b01111100;
-    while(IFS3bits.MI2C2IF == 0);
+    I2C2TRN = slave_address_write;
+    while(!IFS3bits.MI2C2IF);
     IFS3bits.MI2C2IF = 0;
     I2C2TRN = 0b00000000;
-    while(IFS3bits.MI2C2IF == 0);
+    while(!IFS3bits.MI2C2IF);
     IFS3bits.MI2C2IF = 0;
-    I2C2TRN = package;
-    while(IFS3bits.MI2C2IF == 0);
+    I2C2TRN = command;
+    while(!IFS3bits.MI2C2IF);
     IFS3bits.MI2C2IF = 0;
     I2C2CONbits.PEN = 1;
-    while(I2C2CONbits.PEN);
+    while(I2C2CONbits.PEN == 1);
 }
 
-void lcd_init(void){
+
+
+void lcd_init(void) {
     delay(50);
     lcd_cmd(0b00111000);
     delay(1);
@@ -103,56 +93,170 @@ void lcd_init(void){
    
     
     delay(2);
-    
 }
 
-void lcd_setCursor(char x, char y){
-    if(x<0 || y << 0 || x > 1 || y >7){
-        return;
-        
-    }
-    else{
-        
-        int location = 0b10000000;
-        if (x == 0){
-            location = location | y; 
-            
-        }
-        
-        if (x == 1){
-            location = (0x40 + y) | location;
-        }
-        lcd_cmd(location);
-    }
-}
 
-void lcd_printChar(char myChar){
+
+
+void lcd_printChar(char myChar) {
     I2C2CONbits.SEN = 1;
     while (I2C2CONbits.SEN == 1);
     IFS3bits.MI2C2IF = 0;
-    I2C2TRN = 0b01111100;
+    I2C2TRN = slave_address_write;
     while(!IFS3bits.MI2C2IF);
     IFS3bits.MI2C2IF = 0;
-    I2C2TRN = 0b01000000;
+    I2C2TRN = 0b11000000;
     while(!IFS3bits.MI2C2IF);
     IFS3bits.MI2C2IF = 0;
-    I2C2TRN = 0b10110001;
+    I2C2TRN = myChar;
     while(!IFS3bits.MI2C2IF);
     IFS3bits.MI2C2IF = 0;
     I2C2CONbits.PEN = 1;
     while(I2C2CONbits.PEN == 1);
 }
 
+void lcd_setCursor(char x, char y) {
+    if (x < 0 || x > 1 || y < 0 || y > 7) {
+        return;
+    }
+    else {
+        char cursorLocation = 0b10000000;
+        cursorLocation |= y;
+        if (x == 1) {
+            cursorLocation |= 0b01000000;
+        }
+        lcd_cmd(cursorLocation);
+    }
+}
+
+char getCoordinates(char x, char y) {
+    if (x < 0 || x > 1 || y < 0 || y > 7) {
+        return ' ';
+    }
+    else {
+        char cursorLocation = 0b10000000;
+        cursorLocation |= y;
+        if (x == 1) {
+            cursorLocation |= 0b01000000;
+        }
+        return cursorLocation;
+    }
+}
+
+void lcd_printStr(const char *s) {
+    I2C2CONbits.SEN = 1;
+    while (I2C2CONbits.SEN == 1); //start bit
+    IFS3bits.MI2C2IF = 0;
+    I2C2TRN = slave_address_write;
+    while(!IFS3bits.MI2C2IF); // address
+    IFS3bits.MI2C2IF = 0;
+    
+    
+    int i = 0;
+    int row = 0;
+    int column = 0;
+    for (i = 0; i < 8; i++) {
+        if (i == 7) { //last char in string
+           I2C2TRN = 0b10000000;   
+           while(!IFS3bits.MI2C2IF);
+           IFS3bits.MI2C2IF = 0;
+            char location = getCoordinates(row,column);
+            I2C2TRN = location;
+            while(!IFS3bits.MI2C2IF);
+            IFS3bits.MI2C2IF = 0;
+            I2C2TRN = 0b01000000;   // Control Byte: CO = 0 RS =1 ?last byte?
+            while(!IFS3bits.MI2C2IF);
+            IFS3bits.MI2C2IF = 0;
+            I2C2TRN = s[i];  //data byte
+            while(!IFS3bits.MI2C2IF);
+            IFS3bits.MI2C2IF = 0;   
+        }
+        else { //else char in string
+           I2C2TRN = 0b10000000;
+           while(!IFS3bits.MI2C2IF);
+           IFS3bits.MI2C2IF = 0;
+            char location = getCoordinates(row,column);
+            I2C2TRN = location;
+            while(!IFS3bits.MI2C2IF);
+            IFS3bits.MI2C2IF = 0;
+            I2C2TRN = 0b11000000;   // Control Byte: CO = 1 RS =1
+            while(!IFS3bits.MI2C2IF);
+            IFS3bits.MI2C2IF = 0;
+            I2C2TRN = s[i];  //data byte
+            while(!IFS3bits.MI2C2IF);
+            IFS3bits.MI2C2IF = 0;
+        }
+        column += 1;
+        if (column == 8) {
+            column = 0;
+            row = 1;
+        }
+    }
+    I2C2CONbits.PEN = 1;
+    while(I2C2CONbits.PEN == 1); // end bit
+    
+}
+
+
+
+void scroll_left(const char *s) {
+    if (strlen(s) < 9) {
+        lcd_printStr(s);
+    }
+    else {
+        int i = 0;
+        for (i = 0; i <= strlen(s)-8; i++) {
+            char temp[8];
+            int k = 0;
+            int tempPos = 0;
+            for (k = i; k < i+8; k++) {
+                temp[tempPos] = s[k];
+                tempPos++;
+            }
+            lcd_printStr(temp);
+            int j = 0;
+            for (j = 0; j < 500; j++) {
+                ms_wait();
+            }
+        }
+    }
+}
+
+void scroll_right(const char *s) {
+    if (strlen(s) < 9) {
+        lcd_printStr(s);
+    }
+    else {
+        int i = 0;
+        for (i = strlen(s)-1; i >= 7; i--) {
+            char temp[8];
+            int k = 0;
+            int tempPos = 7;
+            for (k = i; k > i-8; k--) {
+                temp[tempPos] = s[k];
+                tempPos--;
+            }
+            lcd_printStr(temp);
+            int j = 0;
+            for (j = 0; j < 500; j++) {
+                ms_wait();
+            }
+        }
+    }
+}
+
+
+void lcd_clear(void) {
+    lcd_printStr("                ");
+}
+
 int main(void) {
     setup();
     lcd_init();
-    lcd_cmd(0b00000001);
-    while(1){
-       lcd_setCursor(0,0);
-       lcd_printChar('a');
-  
-
+    lcd_clear();
+    while(1) {
+        scroll_left("Hello World!");
+        scroll_right("Hello World!");
     }
-    
     return 0;
 }
