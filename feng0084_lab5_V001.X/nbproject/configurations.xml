@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configurationDescriptor version="65">
+<configurationDescriptor version="62">
   <logicalFolder name="root" displayName="root" projectFiles="true">
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
-      <itemPath>../../Desktop/feng_lab2b_v001.X/feng_lab2b_asmLib_v001.h</itemPath>
+      <itemPath>LCDscreen.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -13,8 +13,10 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>../../Desktop/feng_lab2b_v001.X/feng_lab2b_asmLib_v001.s</itemPath>
       <itemPath>feng0084_lab5_main_v001.c</itemPath>
+      <itemPath>LCDscreen.c</itemPath>
+      <itemPath>feng_lab2b_asmLib_v001.h</itemPath>
+      <itemPath>feng_lab2b_asmLib_v001.s</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -38,9 +40,6 @@
         <languageToolchainVersion>1.35</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
-      <packs>
-        <pack name="PIC24F-GA-GB_DFP" vendor="Microchip" version="1.0.28"/>
-      </packs>
       <compileType>
         <linkerTool>
           <linkerLibItems>

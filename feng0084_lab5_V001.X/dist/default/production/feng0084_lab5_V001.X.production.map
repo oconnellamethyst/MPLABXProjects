@@ -1,23 +1,24 @@
 Microchip Technology Inc, v1.35 (A)
 
 Tool Name:
-  c:\program files (x86)\microchip\xc16\v1.35\bin\bin\..\bin/elf-ld.exe
+  /opt/microchip/xc16/v1.35/bin/bin/../bin/elf-ld
 
 Command:
   -p24FJ64GA002 \
   -o \
   dist/default/production/feng0084_lab5_V001.X.production.elf \
-  -Lc:/program files (x86)/microchip/xc16/v1.35/bin/bin/.. \
-  -Lc:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib \
-  -Lc:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../support/PIC24E/gld \
-  -Lc:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../support/PIC24F/gld \
-  -Lc:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../support/PIC24H/gld \
-  -Lc:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../support/dsPIC30F/gld \
-  -Lc:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../support/dsPIC33C/gld \
-  -Lc:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../support/dsPIC33E/gld \
-  -Lc:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../support/dsPIC33F/gld \
-  build/default/production/_ext/589703195/feng_lab2b_asmLib_v001.o \
+  -L/opt/microchip/xc16/v1.35/bin/bin/.. \
+  -L/opt/microchip/xc16/v1.35/bin/bin/../../lib \
+  -L/opt/microchip/xc16/v1.35/bin/bin/../../support/PIC24E/gld \
+  -L/opt/microchip/xc16/v1.35/bin/bin/../../support/PIC24F/gld \
+  -L/opt/microchip/xc16/v1.35/bin/bin/../../support/PIC24H/gld \
+  -L/opt/microchip/xc16/v1.35/bin/bin/../../support/dsPIC30F/gld \
+  -L/opt/microchip/xc16/v1.35/bin/bin/../../support/dsPIC33C/gld \
+  -L/opt/microchip/xc16/v1.35/bin/bin/../../support/dsPIC33E/gld \
+  -L/opt/microchip/xc16/v1.35/bin/bin/../../support/dsPIC33F/gld \
   build/default/production/feng0084_lab5_main_v001.o \
+  build/default/production/LCDscreen.o \
+  build/default/production/feng_lab2b_asmLib_v001.o \
   --defsym=__MPLAB_BUILD=1 \
   -Tp24FJ64GA002.gld.00 \
   --stack=16 \
@@ -45,14 +46,14 @@ Command:
 Optional library libpPIC24Fxxx.a not found
 Archive member included because of file (symbol)
 
-c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o)
+/opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-pic30-elf.a(crt0_standard.o)
                               (__resetPRI)
-c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-pic30-elf.a(data_init_standard.o)
-                              c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o) (__data_init_standard)
-c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-pic30-elf.a(crt_start_mode_normal.Leo)
+/opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-pic30-elf.a(data_init_standard.o)
+                              /opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-pic30-elf.a(crt0_standard.o) (__data_init_standard)
+/opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-pic30-elf.a(crt_start_mode_normal.Leo)
                               (__crt_start_mode_normal)
-c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-c-elf.a(strlen.XX_eo)
-                              build/default/production/feng0084_lab5_main_v001.o (_strlen)
+/opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-c-elf.a(strlen.XX_eo)
+                              build/default/production/LCDscreen.o (_strlen)
 
 
 xc16-ld 1.35 (A)
@@ -62,10 +63,10 @@ xc16-ld 1.35 (A)
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x200                0xda           0x147  (327)
-.const                       0x2da                0x1e            0x2d  (45)
-.text                        0x2f8               0x42a           0x63f  (1599)
+.const                       0x2da                0x20            0x30  (48)
+.text                        0x2fa               0x42a           0x63f  (1599)
 
-                 Total "program" memory used (bytes):          0x7b3  (1971) 3%
+                 Total "program" memory used (bytes):          0x7b6  (1974) 3%
 
 
 "data" Memory  [Origin = 0x800, Length = 0x2000]
@@ -90,27 +91,27 @@ External Symbols in Program Memory (by address):
 
                   0x000200                  __resetPRI
                   0x00023c                  __psv_init
-                  0x000252                  __data_init_standard
                   0x000252                  __data_init
+                  0x000252                  __data_init_standard
                   0x0002c8                  __DefaultInterrupt
                   0x0002ce                  _strlen
-                  0x0002f8                  _setup
-                  0x000322                  _delay
-                  0x00033c                  _microDelay
-                  0x000356                  _lcd_cmd
-                  0x0003a6                  _lcd_init
-                  0x0003f8                  _lcd_printChar
-                  0x00044a                  _lcd_setCursor
-                  0x000490                  _getCoordinates
-                  0x0004c8                  _lcd_printStr
-                  0x0005dc                  _scroll_left
-                  0x000660                  _scroll_right
-                  0x0006de                  _lcd_clear
-                  0x0006e8                  _main
-                  0x0006fa                  _micro_wait
-                  0x000700                  _ms_wait
-                  0x000706                  _write_0
-                  0x000714                  _write_1
+                  0x0002fa                  _setup
+                  0x000324                  _delay
+                  0x00033e                  _microDelay
+                  0x000358                  _lcd_cmd
+                  0x0003a8                  _lcd_init
+                  0x0003fa                  _lcd_printChar
+                  0x00044c                  _lcd_setCursor
+                  0x000492                  _getCoordinates
+                  0x0004ca                  _lcd_printStr
+                  0x0005de                  _scroll_left
+                  0x000662                  _scroll_right
+                  0x0006e0                  _lcd_clear
+                  0x0006ea                  _micro_wait
+                  0x0006f0                  _ms_wait
+                  0x0006f6                  _write_0
+                  0x000704                  _write_1
+                  0x000712                  _main
 
 External Symbols in Program Memory (by name):
 
@@ -119,24 +120,24 @@ External Symbols in Program Memory (by name):
                   0x000252                  __data_init_standard
                   0x00023c                  __psv_init
                   0x000200                  __resetPRI
-                  0x000322                  _delay
-                  0x000490                  _getCoordinates
-                  0x0006de                  _lcd_clear
-                  0x000356                  _lcd_cmd
-                  0x0003a6                  _lcd_init
-                  0x0003f8                  _lcd_printChar
-                  0x0004c8                  _lcd_printStr
-                  0x00044a                  _lcd_setCursor
-                  0x0006e8                  _main
-                  0x00033c                  _microDelay
-                  0x0006fa                  _micro_wait
-                  0x000700                  _ms_wait
-                  0x0005dc                  _scroll_left
-                  0x000660                  _scroll_right
-                  0x0002f8                  _setup
+                  0x000324                  _delay
+                  0x000492                  _getCoordinates
+                  0x0006e0                  _lcd_clear
+                  0x000358                  _lcd_cmd
+                  0x0003a8                  _lcd_init
+                  0x0003fa                  _lcd_printChar
+                  0x0004ca                  _lcd_printStr
+                  0x00044c                  _lcd_setCursor
+                  0x000712                  _main
+                  0x00033e                  _microDelay
+                  0x0006ea                  _micro_wait
+                  0x0006f0                  _ms_wait
+                  0x0005de                  _scroll_left
+                  0x000662                  _scroll_right
+                  0x0002fa                  _setup
                   0x0002ce                  _strlen
-                  0x000706                  _write_0
-                  0x000714                  _write_1
+                  0x0006f6                  _write_0
+                  0x000704                  _write_1
 
 Memory Configuration
 
@@ -153,11 +154,12 @@ CONFIG1          0x00abfe           0x000002
 
 Linker script and memory map
 
-LOAD build/default/production/_ext/589703195/feng_lab2b_asmLib_v001.o
 LOAD build/default/production/feng0084_lab5_main_v001.o
+LOAD build/default/production/LCDscreen.o
+LOAD build/default/production/feng_lab2b_asmLib_v001.o
                     0x0001                  __MPLAB_BUILD = 0x1
 LOAD pPIC24Fxxx
-LOAD c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libfx-elf.a
+LOAD /opt/microchip/xc16/v1.35/bin/bin/../../lib/libfx-elf.a
                     0xabfc                  __CONFIG2 = 0xabfc
                     0xabfe                  __CONFIG1 = 0xabfe
                     0x0001                  __NO_HANDLES = 0x1
@@ -176,13 +178,13 @@ LOAD c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libfx-elf.a
 
 .text             0x000200         0xda
  *(.init)
- .init            0x000200         0x4c c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o)
-                  0x000200                  __resetPRI
+ .init            0x000200         0x4c /opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-pic30-elf.a(crt0_standard.o)
                   0x000200                  __reset
+                  0x000200                  __resetPRI
                   0x00023c                  __psv_init
- .init            0x00024c         0x7c c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-pic30-elf.a(data_init_standard.o)
-                  0x000252                  __data_init_standard
+ .init            0x00024c         0x7c /opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-pic30-elf.a(data_init_standard.o)
                   0x000252                  __data_init
+                  0x000252                  __data_init_standard
  *(.user_init)
  *(.handle)
  *(.isr*)
@@ -193,10 +195,10 @@ LOAD c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libfx-elf.a
  *(.libdsp)
  *(.lib*)
  .libpic30_crt_start_mode
-                  0x0002cc          0x2 c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-pic30-elf.a(crt_start_mode_normal.Leo)
-                  0x0002cc                  __crt_start_mode
+                  0x0002cc          0x2 /opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-pic30-elf.a(crt_start_mode_normal.Leo)
                   0x0002cc                  __crt_start_mode_normal
- .libc.strlen     0x0002ce          0xc c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-c-elf.a(strlen.XX_eo)
+                  0x0002cc                  __crt_start_mode
+ .libc.strlen     0x0002ce          0xc /opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-c-elf.a(strlen.XX_eo)
                   0x0002ce                  _strlen
 
 usercode
@@ -211,29 +213,33 @@ __CONFIG1
 .comment
  *(.comment)
 
-.debug_info       0x000000        0xda0
+.debug_info       0x000000        0xeb2
  *(.debug_info)
- .debug_info      0x000000         0xb9 build/default/production/_ext/589703195/feng_lab2b_asmLib_v001.o
- .debug_info      0x0000b9        0xce7 build/default/production/feng0084_lab5_main_v001.o
+ .debug_info      0x000000        0x158 build/default/production/feng0084_lab5_main_v001.o
+ .debug_info      0x000158        0xcc1 build/default/production/LCDscreen.o
+ .debug_info      0x000e19         0x99 build/default/production/feng_lab2b_asmLib_v001.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev     0x000000        0x1c7
+.debug_abbrev     0x000000        0x1e6
  *(.debug_abbrev)
- .debug_abbrev    0x000000         0x14 build/default/production/_ext/589703195/feng_lab2b_asmLib_v001.o
- .debug_abbrev    0x000014        0x1b3 build/default/production/feng0084_lab5_main_v001.o
+ .debug_abbrev    0x000000         0x36 build/default/production/feng0084_lab5_main_v001.o
+ .debug_abbrev    0x000036        0x19c build/default/production/LCDscreen.o
+ .debug_abbrev    0x0001d2         0x14 build/default/production/feng_lab2b_asmLib_v001.o
 
-.debug_line       0x000000        0x23d
+.debug_line       0x000000        0x230
  *(.debug_line)
- .debug_line      0x000000         0x78 build/default/production/_ext/589703195/feng_lab2b_asmLib_v001.o
- .debug_line      0x000078        0x1c5 build/default/production/feng0084_lab5_main_v001.o
+ .debug_line      0x000000         0x4c build/default/production/feng0084_lab5_main_v001.o
+ .debug_line      0x00004c        0x18c build/default/production/LCDscreen.o
+ .debug_line      0x0001d8         0x58 build/default/production/feng_lab2b_asmLib_v001.o
 
-.debug_frame      0x000000        0x186
+.debug_frame      0x000000        0x19a
  *(.debug_frame)
- .debug_frame     0x000000        0x186 build/default/production/feng0084_lab5_main_v001.o
+ .debug_frame     0x000000         0x30 build/default/production/feng0084_lab5_main_v001.o
+ .debug_frame     0x000030        0x16a build/default/production/LCDscreen.o
 
 .debug_str        0x000000         0x61
  *(.debug_str)
- .debug_str       0x000000         0x61 build/default/production/feng0084_lab5_main_v001.o
+ .debug_str       0x000000         0x61 build/default/production/LCDscreen.o
 
 .debug_loc
  *(.debug_loc)
@@ -242,20 +248,24 @@ __CONFIG1
  *(.debug_macinfo)
 
 .debug_pubnames
-                  0x000000         0xce
+                  0x000000         0xe0
  *(.debug_pubnames)
  .debug_pubnames
-                  0x000000         0xce build/default/production/feng0084_lab5_main_v001.o
+                  0x000000         0x1b build/default/production/feng0084_lab5_main_v001.o
+ .debug_pubnames
+                  0x00001b         0xc5 build/default/production/LCDscreen.o
 
 .debug_ranges
  *(.debug_ranges)
 
-.debug_aranges    0x000000         0x30
+.debug_aranges    0x000000         0x48
  *(.debug_aranges)
  .debug_aranges
-                  0x000000         0x18 build/default/production/_ext/589703195/feng_lab2b_asmLib_v001.o
+                  0x000000         0x18 build/default/production/feng0084_lab5_main_v001.o
  .debug_aranges
-                  0x000018         0x18 build/default/production/feng0084_lab5_main_v001.o
+                  0x000018         0x18 build/default/production/LCDscreen.o
+ .debug_aranges
+                  0x000030         0x18 build/default/production/feng_lab2b_asmLib_v001.o
                     0x0000                  WREG0 = 0x0
                     0x0000                  _WREG0 = 0x0
                     0x0002                  WREG1 = 0x2
@@ -833,49 +843,55 @@ __CONFIG1
                     0x0230                  UART2 = 0x230
                     0x0230                  _UART2 = 0x230
 START GROUP
-LOAD c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-pic30-elf.a
-LOAD c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\libm-elf.a
-LOAD c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-c-elf.a
+LOAD /opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-pic30-elf.a
+LOAD /opt/microchip/xc16/v1.35/bin/bin/../../lib/libm-elf.a
+LOAD /opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-c-elf.a
 END GROUP
 OUTPUT(dist/default/production/feng0084_lab5_V001.X.production.elf elf32-pic30)
 LOAD default_isr
 
 .debug_pubtypes
-                  0x000030         0xdb
+                  0x000048         0xed
  .debug_pubtypes
-                  0x000030         0xdb build/default/production/feng0084_lab5_main_v001.o
+                  0x000048         0x12 build/default/production/feng0084_lab5_main_v001.o
+ .debug_pubtypes
+                  0x00005a         0xdb build/default/production/LCDscreen.o
 
 __c30_signature
-                  0x00010b         0x18
+                  0x000135         0x1e
  __c30_signature
-                  0x00010b          0x6 build/default/production/feng0084_lab5_main_v001.o
+                  0x000135          0x6 build/default/production/feng0084_lab5_main_v001.o
  __c30_signature
-                  0x000111          0x6 c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o)
+                  0x00013b          0x6 build/default/production/LCDscreen.o
  __c30_signature
-                  0x000117          0x6 c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-pic30-elf.a(data_init_standard.o)
+                  0x000141          0x6 /opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-pic30-elf.a(crt0_standard.o)
  __c30_signature
-                  0x00011d          0x6 c:/program files (x86)/microchip/xc16/v1.35/bin/bin/../../lib\liblega-c-elf.a(strlen.XX_eo)
+                  0x000147          0x6 /opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-pic30-elf.a(data_init_standard.o)
+ __c30_signature
+                  0x00014d          0x6 /opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-c-elf.a(strlen.XX_eo)
 
-.const              0x82da         0x1e load address 0x0002da  
- .const             0x82da         0x1e build/default/production/feng0084_lab5_main_v001.o
+.const              0x82da         0x20 load address 0x0002da  
+ .const             0x82da         0x12 build/default/production/LCDscreen.o
+ .const             0x82ec          0xe build/default/production/feng0084_lab5_main_v001.o
 
-.text             0x0002f8        0x42a
- .text            0x0002f8        0x402 build/default/production/feng0084_lab5_main_v001.o
-                  0x0002f8                  _setup
-                  0x000322                  _delay
-                  0x00033c                  _microDelay
-                  0x000356                  _lcd_cmd
-                  0x0003a6                  _lcd_init
-                  0x0003f8                  _lcd_printChar
-                  0x00044a                  _lcd_setCursor
-                  0x000490                  _getCoordinates
-                  0x0004c8                  _lcd_printStr
-                  0x0005dc                  _scroll_left
-                  0x000660                  _scroll_right
-                  0x0006de                  _lcd_clear
-                  0x0006e8                  _main
- .text            0x0006fa         0x28 build/default/production/_ext/589703195/feng_lab2b_asmLib_v001.o
-                  0x0006fa                  _micro_wait
-                  0x000700                  _ms_wait
-                  0x000706                  _write_0
-                  0x000714                  _write_1
+.text             0x0002fa        0x42a
+ .text            0x0002fa        0x3f0 build/default/production/LCDscreen.o
+                  0x0002fa                  _setup
+                  0x000324                  _delay
+                  0x00033e                  _microDelay
+                  0x000358                  _lcd_cmd
+                  0x0003a8                  _lcd_init
+                  0x0003fa                  _lcd_printChar
+                  0x00044c                  _lcd_setCursor
+                  0x000492                  _getCoordinates
+                  0x0004ca                  _lcd_printStr
+                  0x0005de                  _scroll_left
+                  0x000662                  _scroll_right
+                  0x0006e0                  _lcd_clear
+ .text            0x0006ea         0x28 build/default/production/feng_lab2b_asmLib_v001.o
+                  0x0006ea                  _micro_wait
+                  0x0006f0                  _ms_wait
+                  0x0006f6                  _write_0
+                  0x000704                  _write_1
+ .text            0x000712         0x12 build/default/production/feng0084_lab5_main_v001.o
+                  0x000712                  _main
