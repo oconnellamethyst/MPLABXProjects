@@ -34,6 +34,7 @@
       <itemPath>disc08_UART.c</itemPath>
       <itemPath>disc08_uart_in_1.txt</itemPath>
       <itemPath>disc08_uart_in_2.txt</itemPath>
+      <itemPath>disc09_SPI.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -768,11 +769,43 @@
         <C30Global>
         </C30Global>
       </item>
-      <item path="disc08_UART.c" ex="true" overriding="false">
+      <item path="disc08_UART.c" ex="false" overriding="false">
+        <C30>
+        </C30>
+        <C30-AR>
+        </C30-AR>
+        <C30-AS>
+        </C30-AS>
+        <C30-LD>
+        </C30-LD>
+        <C30Global>
+        </C30Global>
       </item>
       <item path="disc08_uart_in_1.txt" ex="true" overriding="false">
+        <C30>
+        </C30>
+        <C30-AR>
+        </C30-AR>
+        <C30-AS>
+        </C30-AS>
+        <C30-LD>
+        </C30-LD>
+        <C30Global>
+        </C30Global>
       </item>
       <item path="disc08_uart_in_2.txt" ex="true" overriding="false">
+        <C30>
+        </C30>
+        <C30-AR>
+        </C30-AR>
+        <C30-AS>
+        </C30-AS>
+        <C30-LD>
+        </C30-LD>
+        <C30Global>
+        </C30Global>
+      </item>
+      <item path="disc09_SPI.c" ex="true" overriding="false">
       </item>
       <item path="disc3.c" ex="true" overriding="false">
         <C30>
@@ -810,7 +843,7 @@
         <C30Global>
         </C30Global>
       </item>
-      <item path="int_first_t1.c" ex="false" overriding="false">
+      <item path="int_first_t1.c" ex="true" overriding="false">
         <C30>
         </C30>
         <C30-AR>
