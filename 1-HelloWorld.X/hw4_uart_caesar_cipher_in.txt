@@ -1,0 +1,7 @@
+wait 200 ms
+
+"QEB NRFZH YOLTK CLU GRJMP LSBO QEB IXWV ALD"
+
+wait 1 ms
+
+0D 0A
