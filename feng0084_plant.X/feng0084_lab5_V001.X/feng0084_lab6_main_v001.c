@@ -19,10 +19,10 @@
 
 
 #define BUFFER_SIZE 1024
- int index = 0;
-volatile unsigned int buffer[BUFFER_SIZE]; // Make sure all types are the same
-
-
+ volatile int index = 0;
+volatile unsigned int buffer[BUFFER_SIZE];
+float currentValue = 0;
+int average = 0;
 
 void putVal(int newValue){
     if(index < BUFFER_SIZE ){
@@ -66,20 +66,30 @@ void __attribute__ ((__interrupt__,auto_psv)) _T2Interrupt(void)
 {
     IFS0bits.T2IF = 0;
     
- int average = getAvg();
+    average = getAvg();
 	char adStr[50];
-    sprintf(adStr, "%6.4f V", (3.3/1024)*average);  
-   scroll_left(adStr);  
- 
+    sprintf(adStr, "%6.2f %%", ((3.3/1024)*average)*100/2.6);  
+    scroll_left(adStr);  
+    currentValue = ((3.3/1024)*average)*100/2.6;
+   
+    if( currentValue >= 80.0){
+        second_row_scroll_left("Too dry");
+    }
+    else if( currentValue >=60.0){
+        second_row_scroll_left("a little dry");
+    }
+    else if(currentValue >= 40.0){
+        second_row_scroll_left("OK ");
+    }
     
+    else if(currentValue >= 20.0){
+        second_row_scroll_left("a little wet");
+    }
+    else if(currentValue >= 0.0){
+        second_row_scroll_left("too wet");
+    }
 }
  
-   
-    
-    
-
-
-
 
 
 void setup(void) {
@@ -122,11 +132,20 @@ void setup(void) {
     
     T2CON = 0;
     T2CONbits.TCKPS =0b10;
-    PR2 =25000; //trigger timer2 every 
+    PR2 =25000; //trigger timer2 every 100ms
     IFS0bits.T2IF = 0;
     T2CONbits.TON = 1;
     IEC0bits.T2IE = 1; //Enable Timer2 interrupts
     
+    T1CON = 0;
+    T1CONbits.TCKPS =0b11;
+    PR1 =2500; //trigger timer2 every 100ms
+    IFS0bits.T1IF = 0;
+    T2CONbits.TON = 1;
+    IEC0bits.T1IE = 1; //Enable Timer2 interrupts
+    
+    
+     
 }
 
 
@@ -136,8 +155,8 @@ int main(void) {
     lcd_clear();
     initBuffer();
     while(1) {
-        //scroll_left("Hello World!");
-        //scroll_right("Hello World!");
+         
+   
     }
     return 0;
 }
