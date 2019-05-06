@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=woole022_Lab6.c Lab6.c Display6.c
+SOURCEFILES_QUOTED_IF_SPACED=flowControl.c Display6.c Final_Project.c Buffer.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/woole022_Lab6.o ${OBJECTDIR}/Lab6.o ${OBJECTDIR}/Display6.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/woole022_Lab6.o.d ${OBJECTDIR}/Lab6.o.d ${OBJECTDIR}/Display6.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/flowControl.o ${OBJECTDIR}/Display6.o ${OBJECTDIR}/Final_Project.o ${OBJECTDIR}/Buffer.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/flowControl.o.d ${OBJECTDIR}/Display6.o.d ${OBJECTDIR}/Final_Project.o.d ${OBJECTDIR}/Buffer.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/woole022_Lab6.o ${OBJECTDIR}/Lab6.o ${OBJECTDIR}/Display6.o
+OBJECTFILES=${OBJECTDIR}/flowControl.o ${OBJECTDIR}/Display6.o ${OBJECTDIR}/Final_Project.o ${OBJECTDIR}/Buffer.o
 
 # Source Files
-SOURCEFILES=woole022_Lab6.c Lab6.c Display6.c
+SOURCEFILES=flowControl.c Display6.c Final_Project.c Buffer.c
 
 
 CFLAGS=
@@ -94,19 +94,12 @@ MP_LINKER_FILE_OPTION=,--script=p24FJ64GA002.gld
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: compile
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-${OBJECTDIR}/woole022_Lab6.o: woole022_Lab6.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/flowControl.o: flowControl.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/woole022_Lab6.o.d 
-	@${RM} ${OBJECTDIR}/woole022_Lab6.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  woole022_Lab6.c  -o ${OBJECTDIR}/woole022_Lab6.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/woole022_Lab6.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
-	@${FIXDEPS} "${OBJECTDIR}/woole022_Lab6.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
-	
-${OBJECTDIR}/Lab6.o: Lab6.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/Lab6.o.d 
-	@${RM} ${OBJECTDIR}/Lab6.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  Lab6.c  -o ${OBJECTDIR}/Lab6.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/Lab6.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
-	@${FIXDEPS} "${OBJECTDIR}/Lab6.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	@${RM} ${OBJECTDIR}/flowControl.o.d 
+	@${RM} ${OBJECTDIR}/flowControl.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  flowControl.c  -o ${OBJECTDIR}/flowControl.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/flowControl.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
+	@${FIXDEPS} "${OBJECTDIR}/flowControl.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 ${OBJECTDIR}/Display6.o: Display6.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
@@ -115,20 +108,27 @@ ${OBJECTDIR}/Display6.o: Display6.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} $(MP_EXTRA_CC_PRE)  Display6.c  -o ${OBJECTDIR}/Display6.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/Display6.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/Display6.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
-else
-${OBJECTDIR}/woole022_Lab6.o: woole022_Lab6.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/Final_Project.o: Final_Project.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/woole022_Lab6.o.d 
-	@${RM} ${OBJECTDIR}/woole022_Lab6.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  woole022_Lab6.c  -o ${OBJECTDIR}/woole022_Lab6.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/woole022_Lab6.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
-	@${FIXDEPS} "${OBJECTDIR}/woole022_Lab6.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	@${RM} ${OBJECTDIR}/Final_Project.o.d 
+	@${RM} ${OBJECTDIR}/Final_Project.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  Final_Project.c  -o ${OBJECTDIR}/Final_Project.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/Final_Project.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
+	@${FIXDEPS} "${OBJECTDIR}/Final_Project.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
-${OBJECTDIR}/Lab6.o: Lab6.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/Buffer.o: Buffer.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/Lab6.o.d 
-	@${RM} ${OBJECTDIR}/Lab6.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  Lab6.c  -o ${OBJECTDIR}/Lab6.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/Lab6.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
-	@${FIXDEPS} "${OBJECTDIR}/Lab6.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	@${RM} ${OBJECTDIR}/Buffer.o.d 
+	@${RM} ${OBJECTDIR}/Buffer.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  Buffer.c  -o ${OBJECTDIR}/Buffer.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/Buffer.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
+	@${FIXDEPS} "${OBJECTDIR}/Buffer.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+else
+${OBJECTDIR}/flowControl.o: flowControl.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/flowControl.o.d 
+	@${RM} ${OBJECTDIR}/flowControl.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  flowControl.c  -o ${OBJECTDIR}/flowControl.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/flowControl.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
+	@${FIXDEPS} "${OBJECTDIR}/flowControl.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 ${OBJECTDIR}/Display6.o: Display6.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
@@ -136,6 +136,20 @@ ${OBJECTDIR}/Display6.o: Display6.c  nbproject/Makefile-${CND_CONF}.mk
 	@${RM} ${OBJECTDIR}/Display6.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  Display6.c  -o ${OBJECTDIR}/Display6.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/Display6.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/Display6.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/Final_Project.o: Final_Project.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/Final_Project.o.d 
+	@${RM} ${OBJECTDIR}/Final_Project.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  Final_Project.c  -o ${OBJECTDIR}/Final_Project.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/Final_Project.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
+	@${FIXDEPS} "${OBJECTDIR}/Final_Project.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/Buffer.o: Buffer.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/Buffer.o.d 
+	@${RM} ${OBJECTDIR}/Buffer.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  Buffer.c  -o ${OBJECTDIR}/Buffer.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/Buffer.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
+	@${FIXDEPS} "${OBJECTDIR}/Buffer.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 endif
 

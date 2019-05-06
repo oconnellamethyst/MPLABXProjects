@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "woole022_Lab6.h"
+#include "Buffer.h"
 
 void delay(unsigned long int x){
     unsigned long int y; //x is # of ms

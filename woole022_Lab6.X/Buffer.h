@@ -1,6 +1,6 @@
 #include "xc.h"
-#ifndef WOOLE022_LAB6_H
-#define	WOOLE022_LAB6_H
+#ifndef Buffer_H
+#define	Buffer_H
 
 
 #ifdef	__cplusplus

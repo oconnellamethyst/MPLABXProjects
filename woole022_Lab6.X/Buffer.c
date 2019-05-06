@@ -1,6 +1,6 @@
 #include "xc.h"
 #include <stdio.h>
-#include "woole022_Lab6.h"
+#include "Buffer.h"
 
 #define N 1024
 volatile int Buffer[N];
