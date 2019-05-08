@@ -5,11 +5,11 @@ Course number: EE2361
 Term: Spring 2019
 Lab/assignment number: EE2361 Final Project
 Short Program Description: Plant Robot watering code, this code runs off of the
-PIC24 and uses the ADC and the principle of voltage division to turn an analog
-readout of the voltage into a percent moisture based on calibrations made with
-the sensor. It then takes this percent moisture readout and prints it to an LCD
-screen while using the percent moisture to determine the duration of running
-a relay which runs a solenoid which waters a plant.
+PIC24 and uses the ADC (code primarily from lab 6) and the principle of voltage 
+division to turn an analog readout of the voltage into a percent moisture based 
+on calibrations made with the sensor. It then takes this percent moisture readout
+and prints it to an LCD screen while using the percent moisture to determine 
+the duration of running a relay which runs a solenoid which waters a plant.
 */
 
 #include "xc.h"
@@ -72,8 +72,8 @@ int setup(void){
     return 0;
 }
 
-unsigned long int adValue;
-char adStr[50];
+unsigned long int adValue; //(Analog to Digital) Value from the ADC buffer
+char adStr[50]; // (Analog to Digital) String for use with sprintf below
 
 void __attribute__((interrupt, auto_psv)) _ADC1Interrupt(){
     IFS0bits.AD1IF = 0; //read voltage from A0 for 16 times a second
@@ -87,13 +87,19 @@ int main(void){
     while(1){
         lcd_setCursor(0,0);
         curVal = (3.3/1024)*adValue*100/2.6; //2.6 is a calibration value, 2.6 volts, the maximum voltage
+        
+        // If this were being sold commercially you would need to add an external timer to the PIC24
+        // and create a function which would adjust that 2.6V for the corrosion of the resistive circuit
+        // based on the timestamp. Alternatively, you could use a capacitive soil sensor
+        // but you'd want one that would work with the PIC24 natively, i.e. not the Adafruit STEMMA.
+        
         sprintf(adStr, "%6.2f %%", curVal); 
         lcd_printStr(adStr);
 
         lcd_setCursor(0,1);
-        if(curVal >= 80)      lcd_printStr("Too wet");
-        else if(curVal >= 60) lcd_printStr("Bit wet");
-        else if(curVal >= 40) lcd_printStr("Normal ");
+        if(curVal >= 80)      lcd_printStr("Too wet"); // Percent values in terms of watering
+        else if(curVal >= 60) lcd_printStr("Bit wet"); // These thresholds could be changed
+        else if(curVal >= 40) lcd_printStr("Normal "); // For different types of plants
         else if(curVal >= 20) lcd_printStr("Bit dry");
         else if(curVal >= 0){  
             lcd_printStr("Too dry");
