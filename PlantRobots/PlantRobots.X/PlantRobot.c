@@ -75,21 +75,19 @@ void flowControlInit(void)
 void pause(uint8_t pause_in_seconds)
 // Function: pause
 //  ---------------------------
-// Delays the function for a number of seconds. Used in the waterTime function.
+// Delays the function for a number of seconds (pause_in_seconds). Used in the waterTime function.
 {
     int i = 0;
     while(i < pause_in_seconds)
     {
-        while(!_T1IF);
-        _T1IF = 0;
-        i++;
+        delay(1000); // there are 1000 milliseconds in a second
     }
 }
 
 void waterTime(uint8_t water_time_in_seconds)
 // Function: waterTime
 //  ---------------------------
-// Opens the solenoid valve to water the plant for a number of seconds.
+// Opens the solenoid valve to water the plant for a number of seconds (water_time_in_seconds).
 {
     uint32_t i;
 
@@ -110,7 +108,7 @@ void waterTime(uint8_t water_time_in_seconds)
 void delay(unsigned long int x){
 // Function: delay
 //  ---------------------------
-// Delays the function for a number of milliseconds using assembly code. Used in lcd_init.
+// Delays the function for a number of milliseconds (x) using assembly code. Used in lcd_init.
     unsigned long int y; //x is # of ms
     for(y=0; y<x; y++){
         asm("repeat #15998");
@@ -164,7 +162,7 @@ void lcd_init(void){
 void lcd_setCursor(char x, char y){
 // Function: lcd_setCursor
 //  ---------------------------
-// Sets the position for the cursor to write new letters
+// Sets the position for the cursor to write new letters based on the numbers in x and y.
     int location = 0x40*y+x; //0x40 * row + column
     int coords = location + 0x80;
     lcd_cmd(coords);
@@ -173,7 +171,7 @@ void lcd_setCursor(char x, char y){
 void lcd_printChar(char myChar){
 // Function: lcd_printChar
 //  ---------------------------
-// Prints a character onto the LCD screen
+// Prints a character (myChar) onto the LCD screen
 
     I2C2CONbits.SEN = 1;    //Initiate Start condition
     while(I2C2CONbits.SEN == 1);  // SEN will clear when Start Bit is complete
@@ -197,7 +195,7 @@ void lcd_printChar(char myChar){
 void lcd_printStr(const char *s){
 // Function: lcd_printStr
 //  ---------------------------
-// Prints a string onto the LCD screen
+// Prints a string onto the LCD screen. Takes in a string pointer.
     int i;
     for(i=0; i<strlen(s); i++){
         if(i>7){

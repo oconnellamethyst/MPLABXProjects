@@ -6,7 +6,7 @@ Tool Name:
 Command:
   -p24FJ64GA002 \
   -o \
-  dist/default/production/1-HelloWorld.X.production.elf \
+  dist/default/debug/1-HelloWorld.X.debug.elf \
   -L/opt/microchip/xc16/v1.35/bin/bin/.. \
   -L/opt/microchip/xc16/v1.35/bin/bin/../../lib \
   -L/opt/microchip/xc16/v1.35/bin/bin/../../support/PIC24E/gld \
@@ -16,8 +16,11 @@ Command:
   -L/opt/microchip/xc16/v1.35/bin/bin/../../support/dsPIC33C/gld \
   -L/opt/microchip/xc16/v1.35/bin/bin/../../support/dsPIC33E/gld \
   -L/opt/microchip/xc16/v1.35/bin/bin/../../support/dsPIC33F/gld \
-  build/default/production/hw5_stack.o \
+  build/default/debug/hw5_stack.o \
   --defsym=__MPLAB_BUILD=1 \
+  --defsym=__MPLAB_DEBUG=1 \
+  --defsym=__DEBUG=1 \
+  --defsym=__MPLAB_DEBUGGER_SIMULATOR=1 \
   -Tp24FJ64GA002.gld.00 \
   --stack=16 \
   --check-sections \
@@ -30,10 +33,10 @@ Command:
   --stackguard=16 \
   --no-force-link \
   --smart-io \
-  -Map=dist/default/production/1-HelloWorld.X.production.map \
+  -Map=dist/default/debug/1-HelloWorld.X.debug.map \
   --report-mem \
   --memorysummary \
-  dist/default/production/memoryfile.xml \
+  dist/default/debug/memoryfile.xml \
   -start-group \
   --library=lega-pic30-elf \
   --library=m-elf \
@@ -119,8 +122,11 @@ CONFIG1          0x00abfe           0x000002
 
 Linker script and memory map
 
-LOAD build/default/production/hw5_stack.o
+LOAD build/default/debug/hw5_stack.o
                     0x0001                  __MPLAB_BUILD = 0x1
+                    0x0001                  __MPLAB_DEBUG = 0x1
+                    0x0001                  __DEBUG = 0x1
+                    0x0001                  __MPLAB_DEBUGGER_SIMULATOR = 0x1
 LOAD pPIC24Fxxx
 LOAD /opt/microchip/xc16/v1.35/bin/bin/../../lib/libfx-elf.a
                     0xabfc                  __CONFIG2 = 0xabfc
@@ -176,24 +182,24 @@ __CONFIG1
 
 .debug_info       0x000000        0x31d
  *(.debug_info)
- .debug_info      0x000000        0x31d build/default/production/hw5_stack.o
+ .debug_info      0x000000        0x31d build/default/debug/hw5_stack.o
  *(.gnu.linkonce.wi.*)
 
 .debug_abbrev     0x000000         0xfc
  *(.debug_abbrev)
- .debug_abbrev    0x000000         0xfc build/default/production/hw5_stack.o
+ .debug_abbrev    0x000000         0xfc build/default/debug/hw5_stack.o
 
 .debug_line       0x000000         0xd2
  *(.debug_line)
- .debug_line      0x000000         0xd2 build/default/production/hw5_stack.o
+ .debug_line      0x000000         0xd2 build/default/debug/hw5_stack.o
 
 .debug_frame      0x000000         0x68
  *(.debug_frame)
- .debug_frame     0x000000         0x68 build/default/production/hw5_stack.o
+ .debug_frame     0x000000         0x68 build/default/debug/hw5_stack.o
 
 .debug_str        0x000000          0xb
  *(.debug_str)
- .debug_str       0x000000          0xb build/default/production/hw5_stack.o
+ .debug_str       0x000000          0xb build/default/debug/hw5_stack.o
 
 .debug_loc
  *(.debug_loc)
@@ -205,7 +211,7 @@ __CONFIG1
                   0x000000         0x2d
  *(.debug_pubnames)
  .debug_pubnames
-                  0x000000         0x2d build/default/production/hw5_stack.o
+                  0x000000         0x2d build/default/debug/hw5_stack.o
 
 .debug_ranges
  *(.debug_ranges)
@@ -213,7 +219,7 @@ __CONFIG1
 .debug_aranges    0x000000         0x18
  *(.debug_aranges)
  .debug_aranges
-                  0x000000         0x18 build/default/production/hw5_stack.o
+                  0x000000         0x18 build/default/debug/hw5_stack.o
                     0x0000                  WREG0 = 0x0
                     0x0000                  _WREG0 = 0x0
                     0x0002                  WREG1 = 0x2
@@ -795,18 +801,18 @@ LOAD /opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-pic30-elf.a
 LOAD /opt/microchip/xc16/v1.35/bin/bin/../../lib/libm-elf.a
 LOAD /opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-c-elf.a
 END GROUP
-OUTPUT(dist/default/production/1-HelloWorld.X.production.elf elf32-pic30)
+OUTPUT(dist/default/debug/1-HelloWorld.X.debug.elf elf32-pic30)
 LOAD default_isr
 
 .debug_pubtypes
                   0x000018         0x40
  .debug_pubtypes
-                  0x000018         0x40 build/default/production/hw5_stack.o
+                  0x000018         0x40 build/default/debug/hw5_stack.o
 
 __c30_signature
                   0x000058         0x12
  __c30_signature
-                  0x000058          0x6 build/default/production/hw5_stack.o
+                  0x000058          0x6 build/default/debug/hw5_stack.o
  __c30_signature
                   0x00005e          0x6 /opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-pic30-elf.a(crt0_standard.o)
  __c30_signature
@@ -814,13 +820,13 @@ __c30_signature
 
 .config_JTAGEN    0x00abfe          0x2
  .config_JTAGEN
-                  0x00abfe          0x2 build/default/production/hw5_stack.o
+                  0x00abfe          0x2 build/default/debug/hw5_stack.o
 
 .config_IESO      0x00abfc          0x2
- .config_IESO     0x00abfc          0x2 build/default/production/hw5_stack.o
+ .config_IESO     0x00abfc          0x2 build/default/debug/hw5_stack.o
 
 .text             0x0002ce         0x3a
- .text            0x0002ce         0x3a build/default/production/hw5_stack.o
+ .text            0x0002ce         0x3a build/default/debug/hw5_stack.o
                   0x0002ce                  _setup
                   0x0002e0                  _foo
                   0x0002f8                  _main

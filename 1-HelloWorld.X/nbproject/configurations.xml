@@ -35,6 +35,7 @@
       <itemPath>disc08_uart_in_1.txt</itemPath>
       <itemPath>disc08_uart_in_2.txt</itemPath>
       <itemPath>disc09_SPI.c</itemPath>
+      <itemPath>hw5_stack.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -769,7 +770,7 @@
         <C30Global>
         </C30Global>
       </item>
-      <item path="disc08_UART.c" ex="false" overriding="false">
+      <item path="disc08_UART.c" ex="true" overriding="false">
         <C30>
         </C30>
         <C30-AR>
@@ -806,6 +807,16 @@
         </C30Global>
       </item>
       <item path="disc09_SPI.c" ex="true" overriding="false">
+        <C30>
+        </C30>
+        <C30-AR>
+        </C30-AR>
+        <C30-AS>
+        </C30-AS>
+        <C30-LD>
+        </C30-LD>
+        <C30Global>
+        </C30Global>
       </item>
       <item path="disc3.c" ex="true" overriding="false">
         <C30>
@@ -831,6 +842,8 @@
         <C30Global>
         </C30Global>
       </item>
+      <item path="hw5_stack.c" ex="true" overriding="false">
+      </item>
       <item path="ic_example_with_int.c" ex="true" overriding="false">
         <C30>
         </C30>
@@ -843,7 +856,7 @@
         <C30Global>
         </C30Global>
       </item>
-      <item path="int_first_t1.c" ex="true" overriding="false">
+      <item path="int_first_t1.c" ex="false" overriding="false">
         <C30>
         </C30>
         <C30-AR>
