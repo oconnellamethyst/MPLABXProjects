@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=int_first_t1.c
+SOURCEFILES_QUOTED_IF_SPACED=duty_cycle.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/int_first_t1.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/int_first_t1.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/duty_cycle.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/duty_cycle.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/int_first_t1.o
+OBJECTFILES=${OBJECTDIR}/duty_cycle.o
 
 # Source Files
-SOURCEFILES=int_first_t1.c
+SOURCEFILES=duty_cycle.c
 
 
 CFLAGS=
@@ -94,20 +94,20 @@ MP_LINKER_FILE_OPTION=,--script=p24FJ64GA002.gld
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: compile
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-${OBJECTDIR}/int_first_t1.o: int_first_t1.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/duty_cycle.o: duty_cycle.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/int_first_t1.o.d 
-	@${RM} ${OBJECTDIR}/int_first_t1.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  int_first_t1.c  -o ${OBJECTDIR}/int_first_t1.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/int_first_t1.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_SIMULATOR=1    -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
-	@${FIXDEPS} "${OBJECTDIR}/int_first_t1.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	@${RM} ${OBJECTDIR}/duty_cycle.o.d 
+	@${RM} ${OBJECTDIR}/duty_cycle.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  duty_cycle.c  -o ${OBJECTDIR}/duty_cycle.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/duty_cycle.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_SIMULATOR=1    -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
+	@${FIXDEPS} "${OBJECTDIR}/duty_cycle.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 else
-${OBJECTDIR}/int_first_t1.o: int_first_t1.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/duty_cycle.o: duty_cycle.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/int_first_t1.o.d 
-	@${RM} ${OBJECTDIR}/int_first_t1.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  int_first_t1.c  -o ${OBJECTDIR}/int_first_t1.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/int_first_t1.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
-	@${FIXDEPS} "${OBJECTDIR}/int_first_t1.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	@${RM} ${OBJECTDIR}/duty_cycle.o.d 
+	@${RM} ${OBJECTDIR}/duty_cycle.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  duty_cycle.c  -o ${OBJECTDIR}/duty_cycle.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/duty_cycle.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
+	@${FIXDEPS} "${OBJECTDIR}/duty_cycle.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 endif
 

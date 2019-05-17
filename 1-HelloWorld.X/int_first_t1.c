@@ -33,8 +33,8 @@ void setup(void)
 {
     CLKDIVbits.RCDIV = 0; // make 16MHz
 
-    T1CON = 0;
-    PR1 = 16000;
+    T1CON = 0x30;
+    PR1 = 65535;
     T1CONbits.TON = 1;
 
     IFS0bits.T1IF = 0;
@@ -53,6 +53,8 @@ int main(void)
     setup();
     
     while (1) {
-        count++;
+//        while(IFS0bits.T1IF == 0);  //for polling comment out for interrupt
+//        IFS0bits.T1IF = 0;          //for polling comment out for interrupt
+        //count++;
     }
 }

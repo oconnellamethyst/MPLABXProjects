@@ -36,6 +36,7 @@
       <itemPath>disc08_uart_in_2.txt</itemPath>
       <itemPath>disc09_SPI.c</itemPath>
       <itemPath>hw5_stack.c</itemPath>
+      <itemPath>duty_cycle.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -856,7 +857,7 @@
         <C30Global>
         </C30Global>
       </item>
-      <item path="int_first_t1.c" ex="false" overriding="false">
+      <item path="int_first_t1.c" ex="true" overriding="false">
         <C30>
         </C30>
         <C30-AR>
