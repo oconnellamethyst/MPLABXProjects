@@ -16,7 +16,7 @@ Command:
   -L/opt/microchip/xc16/v1.35/bin/bin/../../support/dsPIC33C/gld \
   -L/opt/microchip/xc16/v1.35/bin/bin/../../support/dsPIC33E/gld \
   -L/opt/microchip/xc16/v1.35/bin/bin/../../support/dsPIC33F/gld \
-  build/default/production/hw5_stack.o \
+  build/default/production/duty_cycle.o \
   --defsym=__MPLAB_BUILD=1 \
   -Tp24FJ64GA002.gld.00 \
   --stack=16 \
@@ -58,18 +58,20 @@ xc16-ld 1.35 (A)
 
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
-.text                        0x200                0xce           0x135  (309)
-.text                        0x2ce                0x3a            0x57  (87)
+.text                        0x200                0xe8           0x15c  (348)
+.text                        0x2e8                0x8c            0xd2  (210)
+.dinit                       0x374                 0x8             0xc  (12)
 
-                 Total "program" memory used (bytes):          0x18c  (396) <1%
+                 Total "program" memory used (bytes):          0x23a  (570) <1%
 
 
 "data" Memory  [Origin = 0x800, Length = 0x2000]
 
 section                    address      alignment gaps    total length  (dec)
 -------                    -------      --------------    -------------------
+.nbss                        0x800                   0             0x6  (6)
 
-                 Total "data" memory used (bytes):              0  (0) 
+                 Total "data" memory used (bytes):            0x6  (6) <1%
 
 
 Dynamic Memory Usage
@@ -77,10 +79,20 @@ Dynamic Memory Usage
 region                     address                      maximum length  (dec)
 ------                     -------                      ---------------------
 heap                             0                                   0  (0)
-stack                        0x800                              0x2000  (8192)
+stack                        0x806                              0x1ffa  (8186)
 
-                 Maximum dynamic memory (bytes):         0x2000  (8192)
+                 Maximum dynamic memory (bytes):         0x1ffa  (8186)
 
+
+External Symbols in Data Memory (by address):
+
+                    0x0800                  _overflow
+                    0x0802                  _numCycles
+
+External Symbols in Data Memory (by name):
+
+                    0x0802                  _numCycles
+                    0x0800                  _overflow
 
 External Symbols in Program Memory (by address):
 
@@ -88,21 +100,21 @@ External Symbols in Program Memory (by address):
                   0x00023c                  __psv_init
                   0x000252                  __data_init
                   0x000252                  __data_init_standard
-                  0x0002c8                  __DefaultInterrupt
-                  0x0002ce                  _setup
-                  0x0002e0                  _foo
-                  0x0002f8                  _main
+                  0x0002c8                  __T1Interrupt
+                  0x0002e2                  __DefaultInterrupt
+                  0x0002e8                  _setup
+                  0x00031c                  _main
 
 External Symbols in Program Memory (by name):
 
-                  0x0002c8                  __DefaultInterrupt
+                  0x0002e2                  __DefaultInterrupt
+                  0x0002c8                  __T1Interrupt
                   0x000252                  __data_init
                   0x000252                  __data_init_standard
                   0x00023c                  __psv_init
                   0x000200                  __resetPRI
-                  0x0002e0                  _foo
-                  0x0002f8                  _main
-                  0x0002ce                  _setup
+                  0x00031c                  _main
+                  0x0002e8                  _setup
 
 Memory Configuration
 
@@ -119,7 +131,7 @@ CONFIG1          0x00abfe           0x000002
 
 Linker script and memory map
 
-LOAD build/default/production/hw5_stack.o
+LOAD build/default/production/duty_cycle.o
                     0x0001                  __MPLAB_BUILD = 0x1
 LOAD pPIC24Fxxx
 LOAD /opt/microchip/xc16/v1.35/bin/bin/../../lib/libfx-elf.a
@@ -139,7 +151,7 @@ LOAD /opt/microchip/xc16/v1.35/bin/bin/../../lib/libfx-elf.a
                   0x000002          0x2 SHORT 0x0 ((ABSOLUTE (__reset) >> 0x10) & 0x7f)
                   0x000003          0x2 SHORT 0x0
 
-.text             0x000200         0xce
+.text             0x000200         0xe8
  *(.init)
  .init            0x000200         0x4c /opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-pic30-elf.a(crt0_standard.o)
                   0x000200                  __reset
@@ -151,16 +163,18 @@ LOAD /opt/microchip/xc16/v1.35/bin/bin/../../lib/libfx-elf.a
  *(.user_init)
  *(.handle)
  *(.isr*)
- .isr             0x0002c8          0x4 default_isr
-                  0x0002c8                  __DefaultInterrupt
+ .isr.text        0x0002c8         0x1a build/default/production/duty_cycle.o
+                  0x0002c8                  __T1Interrupt
+ .isr             0x0002e2          0x4 default_isr
+                  0x0002e2                  __DefaultInterrupt
  *(.libc)
  *(.libm)
  *(.libdsp)
  *(.lib*)
  .libpic30_crt_start_mode
-                  0x0002cc          0x2 /opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-pic30-elf.a(crt_start_mode_normal.Leo)
-                  0x0002cc                  __crt_start_mode_normal
-                  0x0002cc                  __crt_start_mode
+                  0x0002e6          0x2 /opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-pic30-elf.a(crt_start_mode_normal.Leo)
+                  0x0002e6                  __crt_start_mode_normal
+                  0x0002e6                  __crt_start_mode
 
 usercode
  *(usercode)
@@ -174,26 +188,26 @@ __CONFIG1
 .comment
  *(.comment)
 
-.debug_info       0x000000        0x31d
+.debug_info       0x000000        0x983
  *(.debug_info)
- .debug_info      0x000000        0x31d build/default/production/hw5_stack.o
+ .debug_info      0x000000        0x983 build/default/production/duty_cycle.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev     0x000000         0xfc
+.debug_abbrev     0x000000        0x133
  *(.debug_abbrev)
- .debug_abbrev    0x000000         0xfc build/default/production/hw5_stack.o
+ .debug_abbrev    0x000000        0x133 build/default/production/duty_cycle.o
 
-.debug_line       0x000000         0xd2
+.debug_line       0x000000         0xf7
  *(.debug_line)
- .debug_line      0x000000         0xd2 build/default/production/hw5_stack.o
+ .debug_line      0x000000         0xf7 build/default/production/duty_cycle.o
 
-.debug_frame      0x000000         0x68
+.debug_frame      0x000000         0x76
  *(.debug_frame)
- .debug_frame     0x000000         0x68 build/default/production/hw5_stack.o
+ .debug_frame     0x000000         0x76 build/default/production/duty_cycle.o
 
-.debug_str        0x000000          0xb
+.debug_str        0x000000         0x4f
  *(.debug_str)
- .debug_str       0x000000          0xb build/default/production/hw5_stack.o
+ .debug_str       0x000000         0x4f build/default/production/duty_cycle.o
 
 .debug_loc
  *(.debug_loc)
@@ -202,10 +216,10 @@ __CONFIG1
  *(.debug_macinfo)
 
 .debug_pubnames
-                  0x000000         0x2d
+                  0x000000         0x51
  *(.debug_pubnames)
  .debug_pubnames
-                  0x000000         0x2d build/default/production/hw5_stack.o
+                  0x000000         0x51 build/default/production/duty_cycle.o
 
 .debug_ranges
  *(.debug_ranges)
@@ -213,7 +227,7 @@ __CONFIG1
 .debug_aranges    0x000000         0x18
  *(.debug_aranges)
  .debug_aranges
-                  0x000000         0x18 build/default/production/hw5_stack.o
+                  0x000000         0x18 build/default/production/duty_cycle.o
                     0x0000                  WREG0 = 0x0
                     0x0000                  _WREG0 = 0x0
                     0x0002                  WREG1 = 0x2
@@ -797,30 +811,43 @@ LOAD /opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-c-elf.a
 END GROUP
 OUTPUT(dist/default/production/1-HelloWorld.X.production.elf elf32-pic30)
 LOAD default_isr
+LOAD data_init
 
 .debug_pubtypes
-                  0x000018         0x40
+                  0x000018         0xd9
  .debug_pubtypes
-                  0x000018         0x40 build/default/production/hw5_stack.o
+                  0x000018         0xd9 build/default/production/duty_cycle.o
 
 __c30_signature
-                  0x000058         0x12
+                  0x0000f1         0x12
  __c30_signature
-                  0x000058          0x6 build/default/production/hw5_stack.o
+                  0x0000f1          0x6 build/default/production/duty_cycle.o
  __c30_signature
-                  0x00005e          0x6 /opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-pic30-elf.a(crt0_standard.o)
+                  0x0000f7          0x6 /opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-pic30-elf.a(crt0_standard.o)
  __c30_signature
-                  0x000064          0x6 /opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-pic30-elf.a(data_init_standard.o)
+                  0x0000fd          0x6 /opt/microchip/xc16/v1.35/bin/bin/../../lib/liblega-pic30-elf.a(data_init_standard.o)
+
+.nbss               0x0800          0x6
+ .nbss              0x0800          0x6 build/default/production/duty_cycle.o
+                    0x0800                  _overflow
+                    0x0802                  _numCycles
 
 .config_JTAGEN    0x00abfe          0x2
  .config_JTAGEN
-                  0x00abfe          0x2 build/default/production/hw5_stack.o
+                  0x00abfe          0x2 build/default/production/duty_cycle.o
 
 .config_IESO      0x00abfc          0x2
- .config_IESO     0x00abfc          0x2 build/default/production/hw5_stack.o
+ .config_IESO     0x00abfc          0x2 build/default/production/duty_cycle.o
 
-.text             0x0002ce         0x3a
- .text            0x0002ce         0x3a build/default/production/hw5_stack.o
-                  0x0002ce                  _setup
-                  0x0002e0                  _foo
-                  0x0002f8                  _main
+.ivt._T1Interrupt
+                  0x00001a          0x2
+ .ivt._T1Interrupt
+                  0x00001a          0x2 build/default/production/duty_cycle.o
+
+.text             0x0002e8         0x8c
+ .text            0x0002e8         0x8c build/default/production/duty_cycle.o
+                  0x0002e8                  _setup
+                  0x00031c                  _main
+
+.dinit            0x000374          0x8
+ .dinit           0x000374          0x8 data_init

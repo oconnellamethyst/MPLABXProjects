@@ -844,6 +844,16 @@
         </C30Global>
       </item>
       <item path="hw5_stack.c" ex="true" overriding="false">
+        <C30>
+        </C30>
+        <C30-AR>
+        </C30-AR>
+        <C30-AS>
+        </C30-AS>
+        <C30-LD>
+        </C30-LD>
+        <C30Global>
+        </C30Global>
       </item>
       <item path="ic_example_with_int.c" ex="true" overriding="false">
         <C30>
